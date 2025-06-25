@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Multi-Step Registration Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        
+        .registration-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .progress-bar-container {
+            margin-bottom: 40px;
+        }
+        
+        .step-progress {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .step-progress:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #e9ecef;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+        
+        .step {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            color: #6c757d;
+            font-weight: bold;
+        }
+        
+        .step.active {
+            background-color: #0d6efd;
+            color: white;
+        }
+        
+        .step.completed {
+            background-color: #198754;
+            color: white;
+        }
+        
+        .step-label {
+            position: absolute;
+            top: 100%;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #6c757d;
+            white-space: nowrap;
+        }
+        
+        .step.active .step-label,
+        .step.completed .step-label {
+            color: #212529;
+            font-weight: bold;
+        }
+        
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .form-title {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #343a40;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="registration-container">
+            <h1 class="text-center mb-5">Registration Form</h1>
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+                <div class="step-progress">
+                    <div class="step active" id="step1">
+                        <span>1</span>
+                        <span class="step-label">Personal Info</span>
+                    </div>
+                    <div class="step" id="step2">
+                        <span>2</span>
+                        <span class="step-label">Contact Info</span>
+                    </div>
+                    <div class="step" id="step3">
+                        <span>3</span>
+                        <span class="step-label">Account Setup</span>
+                    </div>
+                    <div class="step" id="step4">
+                        <span>4</span>
+                        <span class="step-label">Preferences</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 1: Personal Information -->
+            <div class="form-step active" id="formStep1">
+                <h2 class="form-title">Personal Information</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" required>
+                        <div class="invalid-feedback">Please enter your first name.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" required>
+                        <div class="invalid-feedback">Please enter your last name.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob" required>
+                        <div class="invalid-feedback">Please select your date of birth.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select class="form-select" id="gender" required>
+                            <option value="" selected disabled>Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                        <div class="invalid-feedback">Please select your gender.</div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-4">
+                    <button class="btn btn-primary" onclick="nextStep(1)">Next</button>
+                </div>
+            </div>
+            
+            <!-- Step 2: Contact Information -->
+            <div class="form-step" id="formStep2">
+                <h2 class="form-title">Contact Information</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" required>
+                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone">
+                    </div>
+                    <div class="col-12">
+                        <label for="address" class="form-label">Street Address</label>
+                        <input type="text" class="form-control" id="address" required>
+                        <div class="invalid-feedback">Please enter your address.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" required>
+                        <div class="invalid-feedback">Please enter your city.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="state" class="form-label">State/Province</label>
+                        <input type="text" class="form-control" id="state" required>
+                        <div class="invalid-feedback">Please enter your state/province.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="zip" class="form-label">ZIP/Postal Code</label>
+                        <input type="text" class="form-control" id="zip" required>
+                        <div class="invalid-feedback">Please enter your ZIP/postal code.</div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                    <button class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
+                    <button class="btn btn-primary" onclick="nextStep(2)">Next</button>
+                </div>
+            </div>
+            
+            <!-- Step 3: Account Setup -->
+            <div class="form-step" id="formStep3">
+                <h2 class="form-title">Account Setup</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" required>
+                        <div class="invalid-feedback">Please choose a username.</div>
+                        <div class="form-text">Must be 4-20 characters long.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" required>
+                        <div class="invalid-feedback">Please enter a password.</div>
+                        <div class="form-text">Minimum 8 characters.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" required>
+                        <div class="invalid-feedback">Passwords must match.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="securityQuestion" class="form-label">Security Question</label>
+                        <select class="form-select" id="securityQuestion" required>
+                            <option value="" selected disabled>Select a security question</option>
+                            <option value="mother-maiden-name">What is your mother's maiden name?</option>
+                            <option value="pet-name">What was your first pet's name?</option>
+                            <option value="birth-city">In what city were you born?</option>
+                            <option value="school-name">What was the name of your first school?</option>
+                        </select>
+                        <div class="invalid-feedback">Please select a security question.</div>
+                    </div>
+                    <div class="col-12">
+                        <label for="securityAnswer" class="form-label">Security Answer</label>
+                        <input type="text" class="form-control" id="securityAnswer" required>
+                        <div class="invalid-feedback">Please provide an answer.</div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                    <button class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
+                    <button class="btn btn-primary" onclick="nextStep(3)">Next</button>
+                </div>
+            </div>
+            
+            <!-- Step 4: Preferences -->
+            <div class="form-step" id="formStep4">
+                <h2 class="form-title">Preferences</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="newsletter" class="form-label">Subscribe to Newsletter?</label>
+                        <select class="form-select" id="newsletter">
+                            <option value="yes">Yes</option>
+                            <option value="no" selected>No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="notifications" class="form-label">Receive Notifications?</label>
+                        <select class="form-select" id="notifications">
+                            <option value="email" selected>Email</option>
+                            <option value="sms">SMS</option>
+                            <option value="both">Both</option>
+                            <option value="none">None</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="terms" required>
+                            <label class="form-check-label" for="terms">
+                                I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a>
+                            </label>
+                            <div class="invalid-feedback">You must agree before submitting.</div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="privacyPolicy" required>
+                            <label class="form-check-label" for="privacyPolicy">
+                                I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
+                            </label>
+                            <div class="invalid-feedback">You must agree before submitting.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                    <button class="btn btn-secondary" onclick="prevStep(4)">Previous</button>
+                    <button class="btn btn-success" onclick="submitForm()">Submit Registration</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">I Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="privacyModalLabel">Privacy Policy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Our privacy policy explains how we collect, use, and protect your personal information.</p>
+                    <p>We may collect information such as your name, email address, phone number, and other details to provide our services to you.</p>
+                    <p>We will never sell your personal information to third parties without your consent.</p>
+                    <p>You have the right to access, correct, or delete your personal information at any time by contacting us.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">I Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Form navigation functions
+        function nextStep(currentStep) {
+            if (validateStep(currentStep)) {
+                // Hide current step
+                document.getElementById(`formStep${currentStep}`).classList.remove('active');
+                // Show next step
+                document.getElementById(`formStep${currentStep + 1}`).classList.add('active');
+                
+                // Update progress steps
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                document.getElementById(`step${currentStep}`).classList.add('completed');
+                document.getElementById(`step${currentStep + 1}`).classList.add('active');
+            }
+        }
+        
+        function prevStep(currentStep) {
+            // Hide current step
+            document.getElementById(`formStep${currentStep}`).classList.remove('active');
+            // Show previous step
+            document.getElementById(`formStep${currentStep - 1}`).classList.add('active');
+            
+            // Update progress steps
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${currentStep - 1}`).classList.add('active');
+            document.getElementById(`step${currentStep - 1}`).classList.remove('completed');
+        }
+        
+        function validateStep(step) {
+            let isValid = true;
+            const currentStep = document.getElementById(`formStep${step}`);
+            
+            // Check all required fields in current step
+            const requiredFields = currentStep.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    field.classList.remove('is-invalid');
+                }
+            });
+            
+            // Additional validation for specific steps
+            if (step === 3) {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (password !== confirmPassword) {
+                    document.getElementById('confirmPassword').classList.add('is-invalid');
+                    alert('Passwords do not match!');
+                    isValid = false;
+                }
+                
+                if (password.length < 8) {
+                    document.getElementById('password').classList.add('is-invalid');
+                    alert('Password must be at least 8 characters long!');
+                    isValid = false;
+                }
+            }
+            
+            return isValid;
+        }
+        
+        function submitForm() {
+            if (validateStep(4)) {
+                // Here you would typically send the form data to a server
+                alert('Registration successful! Thank you for signing up.');
+                
+                // Reset form (optional)
+                // document.querySelector('form').reset();
+                
+                // Redirect or show success message
+                // window.location.href = 'success.html';
+            }
+        }
+    </script>
+</body>
+</html>
