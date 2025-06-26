@@ -16,7 +16,7 @@ if (isset($_SESSION["user"])) {
             <div class="col-lg-3 d-lg-block d-none">
                 <div class="announcement-call-wrapper">
                     <div class="announcement-call">
-                        <a class="announcement-text text-white" href="tel:+2348153435691">Call: +234 815 3435 691</a>
+                        <a class="announcement-text text-white" href="tel:+2347060684352">Call: +234 706 0684 352</a>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,6 @@ if (isset($_SESSION["user"])) {
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-start" aria-labelledby="triggerId">
                                     <a class="dropdown-item" href="orders.php">Orders</a>
-                                    <a class="dropdown-item" href="appointments.php">Appointments</a>
                                     <a class="dropdown-item" href="profile.php">Profile</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="logout.php">Logout</a>

@@ -17,12 +17,15 @@
                                 </span>
                             </h4>
                             <div class="footer-menu list-unstyled mb-0 d-md-block text-white ">
-                                <p style="text-align: justify;">Oosa Herbal Care: Elevate your beauty and wellness
-                                    journey with our exceptional services. From rejuvenating facials to expert skincare
-                                    consultations, we are dedicated to enhancing your natural glow. Our commitment to
-                                    quality and personalized care ensures every experience is tailored to your unique
-                                    needs. Discover the art of self-care and let us help you shine with confidence and
-                                    radiance.</p>
+                                <p style="text-align: justify;">Oosa Herbal Care: Shop the finest natural supplements
+                                    for your well-being.
+                                    Our carefully selected herbal supplements are designed to boost your health and
+                                    vitality.
+                                    We offer a wide range of products to suit various needs, from immune support to
+                                    digestive health.
+                                    Trust in Oosa Herbal Care to provide you with premium quality herbal supplements,
+                                    backed by our
+                                    commitment to your health and satisfaction.</p>
                             </div>
                         </div>
                     </div>
@@ -47,10 +50,7 @@
                                     <a href="shop.php">Shop</a>
                                 </li>
                                 <li class="footer-menu-item">
-                                    <a href="about-us.php">About</a>
-                                </li>
-                                <li class="footer-menu-item">
-                                    <a href="services.php">Services</a>
+                                    <a href="blogs.php">Blog</a>
                                 </li>
                                 <li class="footer-menu-item">
                                     <a href="contact.php">Contact</a>
@@ -66,8 +66,10 @@
                                     Stay up to date with all the news.
                                 </p>
                                 <div class="newsletter-wrapper">
-                                   <h5>Call Us</h5>
-                                   <p>+234</p>
+                                    <h5 class="text-light">Call Us</h5>
+                                    <p class="text-light">+234 706 0684 352</p>
+                                    <h5 class="text-light">Email Us</h5>
+                                    <p class="text-light">cygalmcs@gmail.com</p>
                                 </div>
                                 <div class="footer-social-wrapper">
                                     <ul class="footer-social list-unstyled d-flex align-items-center flex-wrap mb-0">

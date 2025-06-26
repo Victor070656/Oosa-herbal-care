@@ -1,6 +1,7 @@
 <?php
 include_once("functions.php");
 session_start();
+require "vendor/autoload.php";
 
 $getProducts = mysqli_query($conn, "SELECT * FROM `products` ORDER BY `id` DESC");
 //dd($getProducts);
@@ -10,6 +11,8 @@ if (isset($_GET["s"])) {
 } else {
     $getPopularProducts = mysqli_query($conn, "SELECT p.*, c.category_name FROM `products` as p JOIN `categories` as c ON p.category_id = c.id ORDER BY p.id DESC");
 }
+
+$records_per_page = 12;
 ?>
 
 <!doctype html>
@@ -194,7 +197,8 @@ if (isset($_GET["s"])) {
                             <div class="filter-sort-wrapper d-flex justify-content-between flex-wrap">
                                 <div class="collection-title-wrap d-flex align-items-end">
                                     <h2 class="collection-title heading_24 mb-0">All products</h2>
-                                    <p class="collection-counter text_16 mb-0 ms-2">(<?= $getPopularProducts->num_rows; ?>
+                                    <p class="collection-counter text_16 mb-0 ms-2">
+                                        (<?= $getPopularProducts->num_rows; ?>
                                         items)
                                     </p>
                                 </div>
@@ -208,9 +212,19 @@ if (isset($_GET["s"])) {
                                     // } else {
                                     //     $getPopularProducts = mysqli_query($conn, "SELECT p.*, c.category_name FROM `products` as p JOIN `categories` as c ON p.category_id = c.id ORDER BY p.id DESC");
                                     // }
-
+                                    
                                     if (mysqli_num_rows($getPopularProducts) > 0):
-                                        while ($products = mysqli_fetch_assoc($getPopularProducts)):
+                                        $items = mysqli_fetch_all($getPopularProducts, MYSQLI_ASSOC);
+                                        $pagination = new Zebra_Pagination();
+
+                                        $pagination->records(count($items));
+
+                                        // records per page
+                                        $pagination->records_per_page($records_per_page);
+
+                                        $items = array_slice($items, ($pagination->get_page() - 1) * $records_per_page, $records_per_page);
+
+                                        foreach ($items as $products):
                                             $discount;
                                             if ($products["discount"] > 0) {
                                                 $discount = $products["price"] - ($products["price"] * ($products["discount"] / 100));
@@ -314,56 +328,20 @@ if (isset($_GET["s"])) {
                                                 </div>
                                             </div>
                                             <?php
-                                        endwhile;
+                                        endforeach;
                                     endif;
                                     ?>
 
                                 </div>
                             </div>
-
                         </div>
                         <!-- product area end -->
 
-                        <!-- sidebar start -->
-                        <div class="col-lg-3 col-md-12 col-12">
-                            <div class="collection-filter filter-drawer">
-                                <div class="filter-widget d-lg-none d-flex align-items-center justify-content-between">
-                                    <h5 class="heading_24">Sorting By</h5>
-                                    <button type="button"
-                                        class="btn-close text-reset filter-drawer-trigger d-lg-none"></button>
-                                </div>
-
-                                <div class="filter-widget d-lg-none">
-                                    <div class="filter-header faq-heading heading_18 d-flex align-items-center justify-content-between border-bottom"
-                                        data-bs-toggle="collapse" data-bs-target="#filter-mobile-sort">
-                                        <span>
-                                            <span class="sorting-title me-2">Sort by:</span>
-                                            <span class="active-sorting">Featured</span>
-                                        </span>
-                                        <span class="faq-heading-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" class="icon icon-down">
-                                                <polyline points="6 9 12 15 18 9"></polyline>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                    <div id="filter-mobile-sort" class="accordion-collapse collapse show">
-                                        <ul class="sorting-lists-mobile list-unstyled m-0">
-                                            <li><a href="#" class="text_14">Featured</a></li>
-                                            <li><a href="#" class="text_14">Best Selling</a></li>
-                                            <li><a href="#" class="text_14">Alphabetically, A-Z</a></li>
-                                            <li><a href="#" class="text_14">Alphabetically, Z-A</a></li>
-                                            <li><a href="#" class="text_14">Price, low to high</a></li>
-                                            <li><a href="#" class="text_14">Price, high to low</a></li>
-                                            <li><a href="#" class="text_14">Date, old to new</a></li>
-                                            <li><a href="#" class="text_14">Date, new to old</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                        <div class="mt-5">
+                            <div class="mt-3">
+                                <?php $pagination->render(); ?>
                             </div>
                         </div>
-                        <!-- sidebar end -->
                     </div>
                 </div>
             </div>

@@ -4,6 +4,19 @@ session_start();
 if (!isset($_SESSION["admin"])) {
   echo "<script>location.href='login.php'</script>";
 }
+
+if (isset($_GET["bid"])) {
+  $blogid = $_GET["bid"];
+} else {
+  echo "<script>location.href='blogs.php'</script>";
+}
+
+
+$getproducts = mysqli_query($conn, "SELECT * FROM `blogs` WHERE `id` = '$blogid'");
+if (mysqli_num_rows($getproducts) > 0) {
+  $product = mysqli_fetch_array($getproducts);
+}
+// var_dump($product);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +33,7 @@ if (!isset($_SESSION["admin"])) {
   <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <!-- Title -->
-  <title>Add Blog</title>
+  <title>Edit Blog</title>
 
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&amp;display=swap" rel="stylesheet">
@@ -56,55 +69,70 @@ if (!isset($_SESSION["admin"])) {
           <div class="col">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Add Blog</h5>
+                <h5 class="card-title">Edit Blog</h5>
                 <form method="post" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-12 mb-3">
                       <label class="form-label">Title</label>
-                      <input type="text" name="title" class="form-control" placeholder="Beaded Wall clock ..." required>
+                      <input type="text" name="title" value="<?= $product["title"]; ?>" class="form-control"
+                        placeholder="">
                     </div>
                     <div class="col-12 mb-3">
                       <label class="form-label">Tags</label>
-                      <input type="text" name="tags" class="form-control" required
+                      <input type="text" name="tags" value="<?= $product["tags"]; ?>" class="form-control"
                         placeholder="Associated terms (Seperated by comma ' , ')">
                     </div>
                     <div class="col-12 mb-3">
+                      <label class="form-label">Featured</label>
+                      <select name="featured" id="" class="form-control form-select">
+                        <option value="0" <?= $product["featured"] == 0 ? "selected" : "" ?>>No</option>
+                        <option value="1" <?= $product["featured"] == 1 ? "selected" : "" ?>>Yes</option>
+                      </select>
+                    </div>
+                    <div class="col-12 mb-3">
                       <label class="form-label">Content</label>
-                      <textarea name="content" id="" class=" form-control " required></textarea>
+                      <textarea name="content" id="" class=" form-control "><?= $product["content"]; ?></textarea>
                     </div>
                     <div class="col-12 mb-3">
                       <label class="form-label">Blog image</label>
-                      <input type="file" name="image" class="form-control" required>
+                      <input type="file" name="image" class="form-control">
                     </div>
                     <div class="col-12 mb-3">
-                      <input type="submit" name="add" value="Add Blog" class="btn btn-primary">
+                      <input type="submit" name="edit" value="Update Blog" class="btn btn-primary">
                     </div>
                   </div>
-                  <!-- Add products -->
+                  <!-- edit product -->
                   <?php
-                  if (isset($_POST["add"])) {
+                  if (isset($_POST["edit"])) {
                     $title = htmlspecialchars($_POST["title"]);
                     $tags = htmlspecialchars($_POST["tags"]);
+                    $featured = (int) htmlspecialchars($_POST["featured"]);
                     $content = htmlspecialchars($_POST["content"]);
-                    $image = date("YmdHis") . $_FILES["image"]["name"];
+                    $image = date("His") . $_FILES["image"]["name"];
                     $tmp_image = $_FILES["image"]["tmp_name"];
-                    $location = "../uploads/blog/" . $image;
+                    $location = "uploads/" . $image;
 
-                    if (move_uploaded_file($tmp_image, $location)) {
-                      $addProduct = mysqli_query($conn, "INSERT INTO `blogs` (`title`, `tags`, `content`, `image`) 
-                      VALUES ('$title','$tags','$content','$image')");
 
-                      if ($addProduct) {
-
-                        echo "<script>alert('Successfully added ✅'); location.href='blogs.php'</script>";
+                    // var_dump($_FILES["image"]["name"] != "");
+                    if ($_FILES["image"]["name"] == "") {
+                      $editProduct = mysqli_query($conn, "UPDATE `blogs` SET `title`='$title', `tags`='$tags', `featured`={$featured}, `content`='$content' WHERE `id`='$blogid'");
+                      if ($editProduct) {
+                        echo "<script>alert('Successfully updated ✅'); location.href='blogs.php'</script>";
                       } else {
                         echo "<script>alert('An error occured ❌')</script>";
                       }
                     } else {
-                      echo "<script>alert('An error occured ❌')</script>";
+                      $editProduct = mysqli_query($conn, "UPDATE `blogs` SET `blogs` SET `title`='$title', `tags`='$tags', `featured`={$featured}, `content`='$content', `image`='$image' WHERE `id`='$blogid'");
+                      if ($editProduct) {
+                        move_uploaded_file($tmp_image, $location);
+                        echo "<script>alert('Successfully updated ✅'); location.href='blogs.php'</script>";
+                      } else {
+                        echo "<script>alert('An error occured ❌')</script>";
+                      }
                     }
                   }
                   ?>
+
                 </form>
               </div>
             </div>
