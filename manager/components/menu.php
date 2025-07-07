@@ -65,6 +65,9 @@
         <li class="<?= basename($_SERVER["SCRIPT_NAME"]) == "product-category.php" ? 'active-page' : '' ?>">
             <a href="product-category.php"><i data-feather="layers"></i>Category</a>
         </li>
+        <li class="<?= basename($_SERVER["SCRIPT_NAME"]) == "banners.php" ? 'active-page' : '' ?>">
+            <a href="banners.php"><i data-feather="layers"></i>Banner Slides</a>
+        </li>
         <li class="<?= basename($_SERVER["SCRIPT_NAME"]) == "blogs.php" ? 'active-page' : '' ?>">
             <a href="blogs.php"><i data-feather="image"></i>Blogs</a>
         </li>

@@ -10,95 +10,11 @@ if (!isset($_SESSION["user"])) {
 }
 
 
-if (isset($_GET["trxref"])) {
-    $data = $_SESSION["pay"];
-    $ref = $_GET["trxref"];
-    $order_id = uniqid("OS-");
-    $order_items = $data["items"];
-    $order_amount = $data["amount"];
-    $order_firstname = $data["first-name"];
-    $order_lastname = $data["last-name"];
-    $order_email = $data["email"];
-    $order_phone = $data["phone"];
-    $order_country = $data["country"];
-    $order_city = $data["city"];
-    $order_zip = $data["zip"];
-    $order_address1 = $data["addr1"];
-    $order_address2 = $data["addr2"];
 
-    $emailBody = '
-        <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Email Template</title>
-        <style type="text/css">
-          body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-          }
-          .header {
-            background-color: #02012b;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            border-radius: 10px;
-          }
-          .content {
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            margin-top: 10px;
-          }
-          .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #02012b;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 15px;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="header">
-          <h1>Order Placed</h1>
-        </div>
-        <div class="content">
-          <p>Hello there,</p>
-          <p>An Order was just placed now (Via Paystack) - Payment Reference: #' . $ref . '</p>
-          <p>To view the order details, please visit your dashboard</p>
-          <a href="https://aestheticsbylozik.com/manager" class="button"
-            >Go To Dashboard</a
-          >
-        </div>
-      </body>
-    </html>
-    
-        ';
-    //    insert order
-    $addOrder = mysqli_query($conn, "INSERT INTO `orders`(`orderid`, `userid`, `ref`, `payment_type`, `items`, `amount`, `firstname`, `lastname`, `email`, `phone`, `country`, `city`, `zipcode`, `address1`, `address2`) 
-VALUES ('$order_id', '$userid', '$ref', 'Paystack', '$order_items', '$order_amount', '$order_firstname', '$order_lastname', '$order_email', '$order_phone', '$order_country', '$order_city', '$order_zip', '$order_address1', '$order_address2')");
-    if ($addOrder) {
-        sendNotification("Someone Placed An Order", $emailBody);
-        $deleteCartItems = mysqli_query($conn, "DELETE FROM `cart` WHERE `userid` = '$userid'");
-        echo "<script>location.href='./'; alert('Order completed ✅')</script>";
-    } else {
-        echo "<script>location.href='./'; alert('Order failed ❌')</script>";
-    }
-}
 //dd($_POST);
 if ($_POST) {
     $info = $_POST;
-    $_SESSION["pay"] = $_POST;
-} else {
-    if (!isset($_GET["msg"])) {
-        echo "<script>location.href='cart.php'</script>";
-    }
+    // $_SESSION["pay"] = $_POST;
 }
 
 // $getRate = mysqli_query($conn, "SELECT * FROM `rate`");
@@ -106,7 +22,7 @@ if ($_POST) {
 
 $amount = (float) round($info["amount"]);
 
-//dd($_SESSION["pay"]);
+// dd($_SESSION["pay"]);
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -226,29 +142,18 @@ $amount = (float) round($info["amount"]);
             <div class="container checkout-page mt-100">
                 <div class="card py-5 px-4" style="border-radius: 15px">
                     <div class="card-body text-center">
-                        <h1 class=" mb-3">✔️</h1>
-                        <h1 class="display-3 fw-bold ">Proceed To Pay</h1>
-                        <h2 class="">Your order costs: ₦<?= $info["amount"]; ?></h2>
-                        <p class="mb-3">Orders take between 14 & 28 days to arrive. </p>
-                        <div class="d-flex gap-3 justify-content-center">
+                        <h1 class=" mb-3">🏦</h1>
+                        <h1 class="display-5 fw-bold ">0123456789</h1>
+                        <h3 class="fw-bold ">Account Name</h3>
+                        <h3 class="fw-bold ">Bank</h3>
+                        <h4 class="">Your order costs: ₦<?= number_format($info["amount"]); ?></h4>
+                        <div class="col-md-6 text-center mx-auto">
 
-                            <form method="post" action="action.php">
-                                <input name="amount" type="hidden" value="<?= $info["amount"]; ?>">
-                                <button type="submit" name="pay_now" class="btn btn-primary btn-sm">
-                                    🛡️ Pay via Paystack
-                                </button>
-                            </form>
-                            <form method="post" action="with-account.php">
-                                <input name="amount" type="hidden" value="<?= $info["amount"]; ?>">
-                                <button type="submit" name="with_account" class="btn btn-primary btn-sm">
-                                    🏦 Pay via Bank Transfer
-                                </button>
-                            </form>
-                            <form method="post" action="pay-on-delivery.php">
-                                <input name="amount" type="hidden" value="<?= $info["amount"]; ?>">
-                                <button type="submit" name="on_delivery" class="btn btn-primary btn-sm">
-                                    🚚 Pay on Delivery
-                                </button>
+                            <form method="post">
+                                <label for="" class="form-label">Transaction Reference number</label>
+                                <input type="text" name="ref" required placeholder="Enter your transaction reference"
+                                    id="" class="form-control text-center mb-3">
+                                <button type="submit" name="pay_now" class="btn btn-primary">Confirm Payment</button>
                             </form>
                         </div>
                     </div>
@@ -257,12 +162,87 @@ $amount = (float) round($info["amount"]);
             <!-- paystack integration -->
             <?php
             if (isset($_POST['pay_now'])) {
-                dd($_SESSION["pay"]);
+                $data = $_SESSION["pay"];
+                $ref = $_POST["ref"];
+                $order_id = uniqid("OS-");
+                $order_items = $data["items"];
+                $order_amount = $data["amount"];
+                $order_firstname = $data["first-name"];
+                $order_lastname = $data["last-name"];
+                $order_email = $data["email"];
+                $order_phone = $data["phone"];
+                $order_country = $data["country"];
+                $order_city = $data["city"];
+                $order_zip = $data["zip"];
+                $order_address1 = $data["addr1"];
+                $order_address2 = $data["addr2"];
 
-                makePayment($email, $_POST["amount"], "http://localhost/abl/pay.php");
-
-
+                $emailBody = '
+                    <!DOCTYPE html>
+                <html>
+                  <head>
+                    <title>Email Template</title>
+                    <style type="text/css">
+                      body {
+                        font-family: Arial, sans-serif;
+                        line-height: 1.6;
+                        color: #333;
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                      }
+                      .header {
+                        background-color: #02012b;
+                        color: white;
+                        padding: 10px;
+                        text-align: center;
+                        border-radius: 10px;
+                      }
+                      .content {
+                        padding: 20px;
+                        background-color: #f9f9f9;
+                        border-radius: 10px;
+                        margin-top: 10px;
+                      }
+                      .button {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #02012b;
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        margin-top: 15px;
+                      }
+                    </style>
+                  </head>
+                  <body>
+                    <div class="header">
+                      <h1>Order Placed</h1>
+                    </div>
+                    <div class="content">
+                      <p>Hello there,</p>
+                      <p>An Order was just placed now (Via Bank Transfer) - Payment Reference: #' . $ref . '</p>
+                      <p>To view the order details, please visit your dashboard</p>
+                      <a href="https://aestheticsbylozik.com/manager" class="button"
+                        >Go To Dashboard</a
+                      >
+                    </div>
+                  </body>
+                </html>
+                
+                    ';
+                //    insert order
+                $addOrder = mysqli_query($conn, "INSERT INTO `orders`(`orderid`, `userid`, `ref`, `payment_type`, `items`, `amount`, `firstname`, `lastname`, `email`, `phone`, `country`, `city`, `zipcode`, `address1`, `address2`) 
+            VALUES ('$order_id', '$userid', '$ref', 'Bank', '$order_items', '$order_amount', '$order_firstname', '$order_lastname', '$order_email', '$order_phone', '$order_country', '$order_city', '$order_zip', '$order_address1', '$order_address2')");
+                if ($addOrder) {
+                    sendNotification("Someone Placed An Order", $emailBody);
+                    $deleteCartItems = mysqli_query($conn, "DELETE FROM `cart` WHERE `userid` = '$userid'");
+                    echo "<script>location.href='./'; alert('Order completed ✅')</script>";
+                } else {
+                    echo "<script>location.href='./'; alert('Order failed ❌')</script>";
+                }
             }
+
             ?>
             <!-- paystack integration end -->
         </main>

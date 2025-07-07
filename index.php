@@ -1,6 +1,9 @@
 <?php
 include_once("functions.php");
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -556,53 +559,69 @@ session_start();
 
     <main id="MainContent" class="content-for-layout ">
       <!-- slideshow start -->
-      <section class="hero-section">
-        <div class="floating-elements">
-          <div class="floating-element"></div>
-          <div class="floating-element"></div>
-          <div class="floating-element"></div>
+      <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+
+        <div class="carousel-inner" role="listbox">
+          <?php
+          $getBanners = mysqli_query($conn, "SELECT * FROM `banners`");
+          if (mysqli_num_rows($getBanners) > 0):
+            $banners = mysqli_fetch_all($getBanners, MYSQLI_ASSOC);
+            foreach ($banners as $i => $banner):
+              ?>
+
+              <div class="carousel-item <?= $i == 0 ? "active" : "" ?>">
+                <section class="hero-section">
+                  <div class="floating-elements">
+                    <div class="floating-element"></div>
+                    <div class="floating-element"></div>
+                    <div class="floating-element"></div>
+                  </div>
+
+                  <div class="hero-container">
+                    <div class="row h-100 py-3">
+                      <div class="hero-text col-md-5">
+                        <div class="hero-badge">Natural • Pure • Effective</div>
+                        <h1 class="hero-title">
+                          <?= $banner["heading"] ?>
+                        </h1>
+                        <p class="hero-subtitle">
+                          <?= $banner["subtitle"] ?>
+                        </p>
+
+                        <div class="hero-buttons">
+                          <a href="shop.php" class="action-btn action-btn-primary">Shop Remedies</a>
+                          <a href="contact.php" class="action-btn action-btn-secondary">Free Consultation</a>
+                        </div>
+                      </div>
+
+                      <div class="hero-image col-md-7 mb-3 mb-md-0">
+                        <div class="hero-image-container">
+                          <img src="uploads/banner/<?= $banner['image'] ?>" style="aspect-ratio: 4/3; object-fit: ;"
+                            alt="Natural herbal remedies and wellness products" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <?php
+            endforeach;
+          endif;
+          ?>
+
+
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
 
-        <div class="hero-container">
-          <div class="hero-content py-3">
-            <div class="hero-text">
-              <div class="hero-badge">Natural • Pure • Effective</div>
-              <h1 class="hero-title">
-                Your Journey to <span class="highlight">Natural Wellness</span> Starts Here
-              </h1>
-              <p class="hero-subtitle">
-                Discover the power of time-tested herbal remedies, carefully crafted for modern living.
-              </p>
-
-              <div class="hero-buttons">
-                <a href="shop.php" class="action-btn action-btn-primary">Shop Remedies</a>
-                <a href="contact.php" class="action-btn action-btn-secondary">Free Consultation</a>
-              </div>
-              <div class="stats">
-                <div class="stat-item">
-                  <span class="stat-number">10k+</span>
-                  <span class="stat-label">Happy Customers</span>
-                </div>
-                <div class="stat-item">
-                  <span class="stat-number">100%</span>
-                  <span class="stat-label">Natural</span>
-                </div>
-                <div class="stat-item">
-                  <span class="stat-number">500+</span>
-                  <span class="stat-label">Remedies</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="hero-image mb-3 mb-md-0">
-              <div class="hero-image-container">
-                <img src="assets/images/herb/10.webp" alt="Natural herbal remedies and wellness products" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- slideshow end -->
+      <!-- end slideshow -->
 
       <section class="py-5 bg-white">
         <div class="container">
@@ -691,10 +710,10 @@ session_start();
                   remedies.
                 </p>
                 <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                  <a href="#shop" class="btn btn-light px-4">
+                  <a href="shop.php" class="btn btn-light px-4">
                     <i class="bi bi-cart3 me-2"></i>Shop Now
                   </a>
-                  <a href="#consultation" class="btn btn-outline-light px-4">
+                  <a href="contact.php" class="btn btn-outline-light px-4">
                     <i class="bi bi-chat-dots me-2"></i>Free Consultation
                   </a>
                 </div>
@@ -714,7 +733,7 @@ session_start();
 
           <div class="row g-4 justify-content-center">
             <?php
-            $getPopularProducts = mysqli_query($conn, "SELECT p.*, c.category_name FROM `products` as p JOIN `categories` as c ON p.category_id = c.id ORDER BY p.id DESC LIMIT 4");
+            $getPopularProducts = mysqli_query($conn, "SELECT p.*, c.category_name FROM `products` as p JOIN `categories` as c ON p.category_id = c.id ORDER BY p.id DESC LIMIT 6");
 
             if (mysqli_num_rows($getPopularProducts) > 0):
               while ($popular = mysqli_fetch_assoc($getPopularProducts)):
@@ -723,7 +742,7 @@ session_start();
                   $discount = $popular["price"] - ($popular["price"] * ($popular["discount"] / 100));
                 }
                 ?>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="700">
+                <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="700">
                   <div class="card h-100 shadow-sm border-0 product-card position-relative overflow-hidden">
 
                     <!-- Discount Badge -->

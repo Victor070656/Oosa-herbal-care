@@ -24,7 +24,7 @@ if (isset($_GET["s"])) {
   <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <!-- Title -->
-  <title>Product Categories</title>
+  <title>Banners</title>
 
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&amp;display=swap" rel="stylesheet">
@@ -60,25 +60,45 @@ if (isset($_GET["s"])) {
           <div class="col">
             <div class="card">
               <div class="card-body">
-                <h4 class="mb-3">Product Categories</h4>
+                <h4 class="mb-1">Home Page Banners</h4>
+                <small class="mb-3">Only a maximum of 5 bannerscan be added</small>
                 <div class="row">
                   <div class="col-12 mb-4">
-                    <form method="post">
-
-                      <input type="text" name="category" required class="form-control mb-3"
-                        placeholder="Add a category">
-                      <button class="btn btn-primary" name="add" type="submit">&plus; Add Category</button>
+                    <form method="post" enctype="multipart/form-data">
+                      <div class="mb-2">
+                        <label for="">Heading</label>
+                        <input type="text" name="heading" class="form-control mb-3" required
+                          placeholder="Add a Heading">
+                      </div>
+                      <div class="mb-2">
+                        <label for="">Subtitle</label>
+                        <input type="text" name="subtitle" class="form-control mb-3" required
+                          placeholder="Add a Subtitle">
+                      </div>
+                      <div class="mb-2">
+                        <label for="">Image</label>
+                        <input type="file" name="image" class="form-control mb-3" required>
+                      </div>
+                      <button class="btn btn-primary" name="add" type="submit">&plus; Add Banner</button>
                       <?php
                       if (isset($_POST["add"])) {
-                        $category = htmlspecialchars($_POST["category"]);
+                        $heading = htmlspecialchars($_POST["heading"]);
+                        $subtitle = htmlspecialchars($_POST["subtitle"]);
+                        $image = time() . $_FILES["image"]["name"];
+                        $image_tmp = $_FILES["image"]["tmp_name"];
 
-                        $addCategory = mysqli_query($conn, "INSERT INTO `categories` (`category_name`) VALUES ('$category')");
+                        $location = __DIR__ . "/../uploads/banner/" . $image;
+                        if (move_uploaded_file($image_tmp, $location)) {
+                          $addBanner = mysqli_query($conn, "INSERT INTO `banners` (`heading`, `subtitle`, `image`) VALUES ('$heading', '$subtitle', '$image')");
 
-                        if ($addCategory) {
+                          if ($addBanner) {
 
-                          echo "<script>alert('Successfully added ✅'); location.href='product-category.php'</script>";
+                            echo "<script>alert('Successfully added ✅'); location.href='banners.php'</script>";
+                          } else {
+                            echo "<script>alert('An error occured ❌')</script>";
+                          }
                         } else {
-                          echo "<script>alert('An error occured ❌')</script>";
+                          echo "<script>alert('Banner upload failed ❌')</script>";
                         }
                       }
                       ?>
@@ -91,33 +111,35 @@ if (isset($_GET["s"])) {
                     <table class="table invoice-table">
                       <thead>
                         <tr class="fw-bold">
-                          <th scope="col">Category Name</th>
-                          <th scope="col">Date</th>
+                          <th scope="col">Image</th>
+                          <th scope="col">Heading</th>
+                          <th scope="col">Subtitle</th>
                           <th scope="col">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php
                         if (isset($s)) {
-                          $getCategory = mysqli_query($conn, "SELECT * FROM `categories` WHERE (`category_name` LIKE '%$s%') ORDER BY `id` DESC");
+                          $getBanners = mysqli_query($conn, "SELECT * FROM `banners` WHERE (`heading` LIKE '%$s%') OR (`subtitle` LIKE '%$s%') ORDER BY `id` DESC");
                         } else {
-                          $getCategory = mysqli_query($conn, "SELECT * FROM `categories` ORDER BY `id` DESC");
+                          $getBanners = mysqli_query($conn, "SELECT * FROM `banners` ORDER BY `id` DESC");
                         }
 
-                        if (mysqli_num_rows($getCategory) > 0):
-                          while ($product = mysqli_fetch_assoc($getCategory)):
-                            $category = (object) $product;
+                        if (mysqli_num_rows($getBanners) > 0):
+                          while ($product = mysqli_fetch_assoc($getBanners)):
+                            $banner = (object) $product;
                             ?>
                             <tr>
-                              <td><?= $category->category_name; ?></td>
+                              <td><img src="../uploads/banner/<?= $banner->image; ?>" alt=""
+                                  style="width: 60px; aspect-ratio: 1/1 !important; object-fit: cover; border-radius: 5px">
+                              </td>
+                              <td><?= $banner->heading; ?></td>
 
-                              <td><?= $category->created_at; ?></td>
+                              <td><?= $banner->subtitle; ?></td>
                               <td>
-                                <a href="edit-product-category.php?pid=<?= $category->id; ?>"><i
-                                    data-feather="edit"></i></a>
+                                <a href="edit-banner.php?pid=<?= $banner->id; ?>"><i data-feather="edit"></i></a>
                                 <!-- <a href="#"><i data-feather="eye"></i></a> -->
-                                <a href="delete-product-category.php?pid=<?= $category->id; ?>"><i
-                                    data-feather="trash"></i></a>
+                                <a href="delete-banner.php?pid=<?= $banner->id; ?>"><i data-feather="trash"></i></a>
                               </td>
                             </tr>
                             <?php

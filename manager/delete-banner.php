@@ -7,17 +7,9 @@ if (!isset($_SESSION["admin"])) {
 
 if (isset($_GET["pid"])) {
   $id = $_GET["pid"];
-} else {
-  echo "<script>location.href='product-category.php'</script>";
+}else {
+  echo "<script>location.href='banners.php'</script>";
 }
-
-$getCat = mysqli_query($conn, "SELECT * FROM `categories` WHERE `id` = '$id'");
-if (mysqli_num_rows($getCat) == 0) {
-  echo "<script>location.href='product-category.php'</script>";
-  exit;
-}
-
-$cat = mysqli_fetch_assoc($getCat);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +26,7 @@ $cat = mysqli_fetch_assoc($getCat);
   <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <!-- Title -->
-  <title>Product Categories</title>
+  <title>Delete Product</title>
 
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&amp;display=swap" rel="stylesheet">
@@ -70,31 +62,24 @@ $cat = mysqli_fetch_assoc($getCat);
           <div class="col">
             <div class="card">
               <div class="card-body">
-                <div class="row">
-                  <div class="col-12 mb-4">
-                    <form method="post">
-
-                      <input type="text" name="category" required class="form-control mb-3" value="<?= $cat['category_name'] ?>"
-                        placeholder="Add a category">
-                      <button class="btn btn-primary" name="add" type="submit">&plus; Edit Category</button>
-                      <?php
-                      if (isset($_POST["add"])) {
-                        $category = htmlspecialchars($_POST["category"]);
-
-                        $addCategory = mysqli_query($conn, "UPDATE `categories` SET `category_name` = '$category' WHERE `id` = '$id'");
-
-                        if ($addCategory) {
-
-                          echo "<script>alert('Successfully updated ✅'); location.href='product-category.php'</script>";
-                        } else {
-                          echo "<script>alert('An error occured ❌')</script>";
-                        }
-                      }
-                      ?>
-                    </form>
-                  </div>
+                <div class="text-center py-5 px-3">
+                  <h1>❗</h1>
+                  <h3>Are you sure you want to Delete this Banner?</h3>
+                  <p>This action cannot be undone.</p>
+                  <form method="post" class="mt-3">
+                    <a href="banners.php" class="btn btn-danger">Cancel</a>
+                    <button type="submit" name="delete" class="btn btn-primary">Proceed &rarr;</button>
+                  </form>
+                  <!-- delete -->
+                  <?php
+                  if (isset($_POST["delete"])) {
+                    $delete = mysqli_query($conn, "DELETE FROM `banners` WHERE `id`='$id'");
+                    if ($delete) {
+                      echo "<script>alert('Deleted!');location.href='banners.php'</script>";
+                    }
+                  }
+                  ?>
                 </div>
-
               </div>
             </div>
           </div>

@@ -537,11 +537,12 @@ if (mysqli_num_rows($checkCart) > 0) {
                     <div class="cart-container">
                         <!-- Cart Items -->
                         <div class="cart-items">
-                            <div class="cart-header">
+                            <div class="cart-header d-flex justify-content-between">
                                 <h2>
                                     <i class="fas fa-list-ul"></i>
                                     Your Items (<?= count($items) ?>)
                                 </h2>
+                                <a href="shop.php" class="btn btn-success btn-sm">Continue Shopping</a>
                             </div>
 
                             <?php

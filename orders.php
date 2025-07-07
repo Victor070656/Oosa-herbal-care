@@ -276,7 +276,7 @@ $orders = mysqli_fetch_all($getOrders, true);
                             <?php
                             $pendingCount = 0;
                             foreach ($orders as $order) {
-                                if (strtolower($order['status']) == 'pending')
+                                if (strtolower($order['status']) == 'pending' || strtolower($order['status']) == 'in queue')
                                     $pendingCount++;
                             }
                             echo $pendingCount;
@@ -335,22 +335,26 @@ $orders = mysqli_fetch_all($getOrders, true);
                                             <?= date("M d, Y \a\\t g:i A", strtotime($order["created_at"])); ?>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 text-md-end mt-2 mt-md-0">
-                                        <span class="status-badge <?= $statusClass ?>">
-                                            <?php
-                                            $statusIcons = [
-                                                'pending' => 'clock',
-                                                'processing' => 'cog',
-                                                'shipped' => 'truck',
-                                                'delivered' => 'check-circle',
-                                                'cancelled' => 'times-circle'
-                                            ];
-                                            $status = strtolower($order['status']);
-                                            $icon = $statusIcons[$status] ?? 'info-circle';
-                                            ?>
-                                            <i class="fas fa-<?= $icon ?> me-1"></i>
-                                            <?= ucfirst($order["status"]); ?>
-                                        </span>
+                                    <div class="col-md-6  text-md-end mt-2 mt-md-0">
+                                        <div class="d-flex flex-column align-items-end">
+
+                                            <span class="status-badge bg-success mb-2 text-light">
+                                                <?php
+                                                $statusIcons = [
+                                                    'pending' => 'clock',
+                                                    'processing' => 'cog',
+                                                    'shipped' => 'truck',
+                                                    'delivered' => 'check-circle',
+                                                    'cancelled' => 'times-circle'
+                                                ];
+                                                $status = strtolower($order['status']);
+                                                $icon = $statusIcons[$status] ?? 'info-circle';
+                                                ?>
+                                                <i class="fas fa-<?= $icon ?> me-1"></i>
+                                                <?= ucfirst($order["status"]); ?>
+                                            </span>
+                                            <small>🧾 <?= $order["payment_type"] ?></small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

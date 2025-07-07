@@ -351,22 +351,26 @@ $orders = mysqli_fetch_assoc($getOrders);
                 <div class="row align-items-center">
                     <div class="col-md-8">
                         <div class="order-id">#<?= $orders["orderid"]; ?></div>
-                        <span
-                            class="status-badge <?= 'status-' . strtolower(str_replace(' ', '-', $orders['status'])) ?>">
-                            <?php
-                            $statusIcons = [
-                                'pending' => 'clock',
-                                'processing' => 'cog',
-                                'shipped' => 'truck',
-                                'delivered' => 'check-circle',
-                                'cancelled' => 'times-circle'
-                            ];
-                            $status = strtolower($orders['status']);
-                            $icon = $statusIcons[$status] ?? 'info-circle';
-                            ?>
-                            <i class="fas fa-<?= $icon ?> me-2"></i>
-                            <?= ucfirst($orders["status"]); ?>
-                        </span>
+                        <div class="d-flex flex-column align-items-start">
+
+                            <span
+                                class="status-badge bg-success text-light">
+                                <?php
+                                $statusIcons = [
+                                    'pending' => 'clock',
+                                    'processing' => 'cog',
+                                    'shipped' => 'truck',
+                                    'delivered' => 'check-circle',
+                                    'cancelled' => 'times-circle'
+                                ];
+                                $status = strtolower($orders['status']);
+                                $icon = $statusIcons[$status] ?? 'info-circle';
+                                ?>
+                                <i class="fas fa-<?= $icon ?> me-2"></i>
+                                <?= ucfirst($orders["status"]); ?>
+                            </span>
+                            <small><b>Payment method:</b> <?= $orders["payment_type"] ?></small>
+                        </div>
 
                         <?php
                         $date1 = new DateTime($orders["created_at"]);
@@ -400,7 +404,7 @@ $orders = mysqli_fetch_assoc($getOrders);
             <div class="row">
                 <?php
                 $currentStatus = strtolower($orders['status']);
-                $statuses = ['pending', 'processing', 'shipped', 'delivered'];
+                $statuses = ['in queue', 'processing', 'shipped', 'delivered'];
                 $statusLabels = ['Order Placed', 'Processing', 'Shipped', 'Delivered'];
                 $statusIcons = ['shopping-cart', 'cog', 'truck', 'check-circle'];
 
@@ -464,6 +468,7 @@ $orders = mysqli_fetch_assoc($getOrders);
                                             <span
                                                 class="fw-bold ms-1 text-primary">₦<?= number_format($product['price'] * $items[$i]["quantity"], 2); ?></span>
                                         </div>
+
                                     <?php endif; ?>
                                 </div>
                             </div>

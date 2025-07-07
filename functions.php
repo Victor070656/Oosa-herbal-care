@@ -65,6 +65,7 @@ function sendMail($email, $subject, $body, $success = "Message has been sent")
     }
 
 }
+
 function sendNotification($subject, $body)
 {
 
