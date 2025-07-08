@@ -339,7 +339,11 @@ $records_per_page = 12;
 
                         <div class="mt-5">
                             <div class="mt-3">
-                                <?php $pagination->render(); ?>
+                                <?php
+                                if (isset($pagination)) {
+                                    $pagination->render();
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>

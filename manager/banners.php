@@ -88,17 +88,22 @@ if (isset($_GET["s"])) {
                         $image_tmp = $_FILES["image"]["tmp_name"];
 
                         $location = __DIR__ . "/../uploads/banner/" . $image;
-                        if (move_uploaded_file($image_tmp, $location)) {
-                          $addBanner = mysqli_query($conn, "INSERT INTO `banners` (`heading`, `subtitle`, `image`) VALUES ('$heading', '$subtitle', '$image')");
+                        $checkBanners = mysqli_query($conn, "SELECT * FROM `banners`");
+                        if (mysqli_num_rows($checkBanners) <= 5) {
+                          if (move_uploaded_file($image_tmp, $location)) {
+                            $addBanner = mysqli_query($conn, "INSERT INTO `banners` (`heading`, `subtitle`, `image`) VALUES ('$heading', '$subtitle', '$image')");
 
-                          if ($addBanner) {
+                            if ($addBanner) {
 
-                            echo "<script>alert('Successfully added ✅'); location.href='banners.php'</script>";
+                              echo "<script>alert('Successfully added ✅'); location.href='banners.php'</script>";
+                            } else {
+                              echo "<script>alert('An error occured ❌')</script>";
+                            }
                           } else {
-                            echo "<script>alert('An error occured ❌')</script>";
+                            echo "<script>alert('Banner upload failed ❌')</script>";
                           }
                         } else {
-                          echo "<script>alert('Banner upload failed ❌')</script>";
+                          echo "<script>alert('Can\'t go beyond the max of 5 Banners ❌')</script>";
                         }
                       }
                       ?>

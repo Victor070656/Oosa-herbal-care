@@ -539,6 +539,14 @@ ini_set('display_errors', 1);
         transform: none;
       }
     }
+
+    .init-overlay {
+      display: none;
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      transition: .8s ease;
+    }
   </style>
 
   <link rel="stylesheet" href="assets/css/vendor.css" />
@@ -550,7 +558,17 @@ ini_set('display_errors', 1);
 <body>
   <div class="body-wrapper">
 
+    <!-- overlay -->
+    <div class="w-100 vh-100 init-overlay position-fixed ">
+      <div class="w-100 h-100 d-flex align-items-center justify-content-center">
 
+        <div class="card bg-light col-md-6 text-center p-5" style="border-radius: 10px">
+          <h3>Welcome to Oosa Herbal Care</h3>
+          <h4 class="mb-0">🌿🍇🍏</h4>
+        </div>
+      </div>
+    </div>
+    <!-- overlay end -->
     <!-- include header.php -->
     <?php
     include("components/header.php");
@@ -558,6 +576,9 @@ ini_set('display_errors', 1);
     <!-- include header.php end -->
 
     <main id="MainContent" class="content-for-layout ">
+
+
+
       <!-- slideshow start -->
       <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
 
@@ -959,11 +980,11 @@ ini_set('display_errors', 1);
 
               <!-- Call to Action -->
               <div class="d-flex flex-column flex-sm-row gap-3">
-                <a href="#consultation" class="btn btn-success btn-lg px-4 py-3">
+                <a href="contact.php" class="btn btn-success btn-lg px-4 py-3">
                   <i class="bi bi-calendar-heart me-2"></i>
                   Book Free Consultation
                 </a>
-                <a href="#shop" class="btn btn-outline-success btn-lg px-4 py-3">
+                <a href="shop.php" class="btn btn-outline-success btn-lg px-4 py-3">
                   <i class="bi bi-shop me-2"></i>
                   Explore Remedies
                 </a>
@@ -1129,6 +1150,18 @@ ini_set('display_errors', 1);
       if (statsSection) {
         observer.observe(statsSection);
       }
+
+      var overlay = document.querySelector(".init-overlay");
+      window.addEventListener("load", function () {
+        overlay.style.display = "block";
+        setTimeout(function () {
+          overlay.style.display = "none";
+        }, 1000);
+      });
+
+      overlay.addEventListener("click", function () {
+        overlay.style.display = "none";
+      });
     </script>
     <script src="assets/js/vendor.js"></script>
     <script src="assets/js/main.js"></script>

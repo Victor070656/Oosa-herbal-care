@@ -127,7 +127,7 @@ session_start();
                                         <div class="contact-details">
                                             <h2 class="contact-title">Mail Address</h2>
                                             <a class="contact-info"
-                                                href="mailto:info@aestheticsbylozik.com">info@aestheticsbylozik.com</a>
+                                                href="mailto:cygalmcs@gmail.com">cygalmcs@gmail.com</a>
                                             <!-- <a class="contact-info" href="mailto:info2@example.com">info2@example.com</a> -->
                                         </div>
                                     </div>
@@ -144,7 +144,7 @@ session_start();
                                         </div>
                                         <div class="contact-details">
                                             <h2 class="contact-title">Office Location</h2>
-                                            <p class="contact-info">Ikenegbu, Owerri, Imo State | Lagos State, Nigeria
+                                            <p class="contact-info">
                                             </p>
                                         </div>
                                     </div>
@@ -161,8 +161,7 @@ session_start();
                                         </div>
                                         <div class="contact-details">
                                             <h2 class="contact-title">Phone Number</h2>
-                                            <a class="contact-info" href="tel:+2347038839142">0703 883 9142 | 0809 373
-                                                4438</a>
+                                            <a class="contact-info" href="tel:+2347060684352">+234 706 0684 352</a>
                                             <!-- <a class="contact-info" href="tel:(307) 555-0133">(307) 555-0133</a> -->
                                         </div>
                                     </div>
