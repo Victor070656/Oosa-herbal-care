@@ -21,13 +21,13 @@ $getFeaturedPost = mysqli_query($conn, "SELECT * FROM `blogs` WHERE `featured` =
 <html lang="en" class="no-js">
 
 <head>
-    <title>Oosa Herbal Care || Blog - Natural Health & Wellness Tips</title>
+    <title>Oosa Herbal Ventures || Blog - Natural Health & Wellness Tips</title>
     <!-- meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-        content="Discover natural health tips, herbal remedies, and wellness advice from Oosa Herbal Care experts. Stay updated with the latest in natural healthcare.">
+        content="Discover natural health tips, herbal remedies, and wellness advice from Oosa Herbal Ventures experts. Stay updated with the latest in natural healthcare.">
     <meta name="keywords" content="herbal care, natural health, wellness blog, herbal remedies, natural medicine">
     <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
 
@@ -287,7 +287,7 @@ $getFeaturedPost = mysqli_query($conn, "SELECT * FROM `blogs` WHERE `featured` =
                     <div class="col-lg-8">
                         <h1 class="display-4 fw-bold mb-3 text-light">Natural Health & Wellness Blog</h1>
                         <p class="lead mb-4">Discover the power of nature with expert tips, herbal remedies, and
-                            wellness advice from Oosa Herbal Care</p>
+                            wellness advice from Oosa Herbal Ventures</p>
 
                         <!-- Search Box -->
                         <form method="GET" class="search-box">

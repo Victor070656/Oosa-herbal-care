@@ -16,7 +16,7 @@ if (isset($_SESSION["user"])) {
             <div class="col-lg-3 d-lg-block d-none">
                 <div class="announcement-call-wrapper">
                     <div class="announcement-call">
-                        <a class="announcement-text text-white" href="tel:+2347060684352">Call: +234 706 0684 352</a>
+                        <a class="announcement-text text-white" href="tel:+2348078777200">Call: +234 807 8777 200</a>
                     </div>
                 </div>
             </div>

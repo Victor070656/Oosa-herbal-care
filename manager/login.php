@@ -16,7 +16,7 @@ session_start();
   <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <!-- Title -->
-  <title>Oosa Herbal Care Admin || Login</title>
+  <title>Oosa Herbal Ventures Admin || Login</title>
 
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&amp;display=swap" rel="stylesheet" />

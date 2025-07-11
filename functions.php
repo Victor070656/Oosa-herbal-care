@@ -46,7 +46,7 @@ function sendMail($email, $subject, $body, $success = "Message has been sent")
         $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Recipients
-        $mail->setFrom('info@comunityguidline.com.ng', 'Oosa Herbal Care');
+        $mail->setFrom('info@comunityguidline.com.ng', 'Oosa Herbal Ventures');
         $mail->addAddress($email);               //Name is optional
 
 
@@ -86,7 +86,7 @@ function sendNotification($subject, $body)
         $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Recipients
-        $mail->setFrom('support@tradeformefx.com', 'Oosa Herbal Care');
+        $mail->setFrom('support@tradeformefx.com', 'Oosa Herbal Ventures');
         $mail->addAddress("ikechukwuv052@gmail.com");               //Name is optional
 
 

@@ -11,12 +11,12 @@ session_start();
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <title>Oosa Herbal Care || About Us</title>
+    <title>Oosa Herbal Ventures || About Us</title>
     <!-- meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Oosa Herbal Care">
+    <meta name="description" content="Oosa Herbal Ventures">
     <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -125,11 +125,11 @@ session_start();
                 <section class="container py-5">
                     <div class="row align-items-center">
                         <div class="col-md-6 text-center">
-                            <img src="assets/images/web/image.png" alt="About Oosa Herbal Care"
+                            <img src="assets/images/web/image.png" alt="About Oosa Herbal Ventures"
                                 class="img-fluid rounded-4" style="border-radius: 15px;">
                         </div>
                         <div class="col-md-6 mt-3 mt-md-0">
-                            <h6 class="text-success text-uppercase">About Oosa Herbal Care</h6>
+                            <h6 class="text-success text-uppercase">About Oosa Herbal Ventures</h6>
                             <h3 class="fw-bold">Your Premier Beauty & Wellness Center in
                                 Owerri and Lagos, Nigeria.</h3>
                             <p class="text-muted">At Aestheticsbylozik, we believe beauty is more than skin deep — it’s

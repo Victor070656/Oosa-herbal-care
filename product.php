@@ -46,12 +46,12 @@ $paymentamount = (float) $product["price"] + $shipping;
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <title>Oosa Herbal Care | Product Detail</title>
+    <title>Oosa Herbal Ventures | Product Detail</title>
     <!-- meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Oosa Herbal Care">
+    <meta name="description" content="Oosa Herbal Ventures">
     <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">

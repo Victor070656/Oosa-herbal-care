@@ -21,11 +21,11 @@ $orders = mysqli_fetch_assoc($getOrders);
 <html lang="en">
 
 <head>
-    <title>Oosa Herbal Care || Order Details</title>
+    <title>Oosa Herbal Ventures || Order Details</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Oosa Herbal Care - Order Details">
+    <meta name="description" content="Oosa Herbal Ventures - Order Details">
     <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
 
     <!-- Bootstrap CSS -->
@@ -353,8 +353,7 @@ $orders = mysqli_fetch_assoc($getOrders);
                         <div class="order-id">#<?= $orders["orderid"]; ?></div>
                         <div class="d-flex flex-column align-items-start">
 
-                            <span
-                                class="status-badge bg-success text-light">
+                            <span class="status-badge bg-success text-light">
                                 <?php
                                 $statusIcons = [
                                     'pending' => 'clock',

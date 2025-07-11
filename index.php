@@ -11,22 +11,25 @@ ini_set('display_errors', 1);
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <!-- /Added by HTTrack -->
-  <title>Oosa Herbal Care</title>
+  <title>Oosa Herbal Ventures</title>
   <!-- meta tags -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="keywords"
-    content="Aesthetics, Aestheticsbylozik, Skincare, Skincare Products, Body Treatments, Cosmetic Solutions, Cosmetics, Beauty, Confidence" />
+    content="Oosa, oosa herbal, oosa herbal ventures, herbal remedies, suppliments, herbal, herbal product" />
   <meta name="description"
-    content="Welcome to Aestheticsbylozik. Here, we combine expert skincare, body treatments, and cosmetic solutions to help you look good, feel better, and own your glow — because beauty starts with confidence." />
+    content="OOSA Herbal Ventures specializes in the production and distribution of Premium herbal medicines and natural health solutions tailored to meet the diverse wellness needs of our clients. With over 30 years of consistent service, we have built a reputation for excellence, trust, and effectiveness in the field of traditional herbal care." />
   <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon" />
   <!-- fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com/" />
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"
     rel="stylesheet" />
+
   <!-- all css -->
+   <link rel="stylesheet" href="assets/css/vendor.css" />
+  <link rel="stylesheet" href="assets/css/style.css" /></style>
   <style>
     :root {
       --primary-color: #2e7d32;
@@ -51,28 +54,32 @@ ini_set('display_errors', 1);
       --btn-secondary-font-weight: 500;
 
       --heading-color: #000;
-      --heading-font-family: "Poppins", sans-serif;
+      --heading-font-family: "Poppins", sans-serif !important;
       --heading-font-weight: 700;
 
       --title-color: #000;
-      --title-font-family: "Poppins", sans-serif;
+      --title-font-family: "Poppins", sans-serif !important;
       --title-font-weight: 400;
 
       --body-color: #000;
       --body-background-color: #fff;
-      --body-font-family: "Poppins", sans-serif;
+      --body-font-family: "Poppins", sans-serif !important;
       --body-font-size: 14px;
       --body-font-weight: 400;
 
       --section-heading-color: #000;
-      --section-heading-font-family: "Poppins", sans-serif;
+      --section-heading-font-family: "Poppins", sans-serif !important;
       --section-heading-font-size: 48px;
       --section-heading-font-weight: 600;
 
       --section-subheading-color: #000;
-      --section-subheading-font-family: "Poppins", sans-serif;
+      --section-subheading-font-family: "Poppins", sans-serif !important;
       --section-subheading-font-size: 16px;
       --section-subheading-font-weight: 400;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif !important;
     }
 
     .banner-bg {
@@ -549,8 +556,7 @@ ini_set('display_errors', 1);
     }
   </style>
 
-  <link rel="stylesheet" href="assets/css/vendor.css" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
 </head>
@@ -563,7 +569,7 @@ ini_set('display_errors', 1);
       <div class="w-100 h-100 d-flex align-items-center justify-content-center">
 
         <div class="card bg-light col-md-6 text-center p-5" style="border-radius: 10px">
-          <h3>Welcome to Oosa Herbal Care</h3>
+          <h3>Welcome to Oosa Herbal Ventures</h3>
           <h4 class="mb-0">🌿🍇🍏</h4>
         </div>
       </div>
@@ -651,8 +657,10 @@ ini_set('display_errors', 1);
             <div class="col-lg-8">
               <h2 class="display-5 fw-bold text-success mb-3">Why Choose Oosa Herbal</h2>
               <p class="lead text-muted">
-                Experience the power of nature with our premium herbal remedies, crafted with ancient wisdom and modern
-                quality standards.
+                OOSA Herbal Ventures specializes in the production and distribution of Premium herbal medicines and
+                natural health solutions tailored to meet the diverse wellness needs of our clients. With over 30 years
+                of consistent service, we have built a reputation for excellence, trust, and effectiveness in the field
+                of traditional herbal care
               </p>
             </div>
           </div>
@@ -727,8 +735,8 @@ ini_set('display_errors', 1);
               <div class="bg-success bg-opacity-10 p-5" style="border-radius: 15px;">
                 <h3 class="fw-bold text-light mb-3">Ready to Start Your Natural Wellness Journey?</h3>
                 <p class="text-light mb-4">
-                  Join thousands of satisfied customers who have transformed their health with our premium herbal
-                  remedies.
+                  Whether you're looking for preventive care, natural healing, or holistic support, OOSA Herbal Ventures
+                  remains your trusted partner in achieving optimal wellness through nature.
                 </p>
                 <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
                   <a href="shop.php" class="btn btn-light px-4">
@@ -929,9 +937,15 @@ ini_set('display_errors', 1);
 
               <!-- Description -->
               <p class="text-muted fs-5 mb-4 lh-base">
-                At Oosa Herbal, we start your wellness journey with a personalized consultation to understand your
-                unique health needs. Our certified herbalists assess your wellness goals, health concerns, and lifestyle
-                to recommend the most effective natural remedies tailored just for you.
+                Our remedies are carefully formulated using pure, natural ingredients, combining ancestral wisdom with
+                modern-day knowledge to offer safe, potent, and side-effect-free alternatives to conventional medicine.
+                At OOSA Herbal Ventures, we are passionate about restoring health the natural way—through nature’s own
+                pharmacy.
+
+                Over the years, we have proudly helped thousands of individuals overcome health challenges related to
+                infertility, infections, hormonal imbalance, Bone and Joint Related issues, low libido, malaria,
+                typhoid, and more. Our products are ethically sourced, lab-tested, carefully packaged and NAFDAC
+                approved to ensure maximum safety and results.
               </p>
 
               <!-- Key Benefits -->
@@ -991,7 +1005,7 @@ ini_set('display_errors', 1);
               </div>
 
               <!-- Trust Indicators -->
-              <div class="mt-4 pt-3 border-top border-light">
+              <!-- <div class="mt-4 pt-3 border-top border-light">
                 <div class="row g-3 text-center">
                   <div class="col-4">
                     <div class="text-success fw-bold h5 mb-1">10K+</div>
@@ -1006,7 +1020,7 @@ ini_set('display_errors', 1);
                     <div class="text-muted small">Natural Products</div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

@@ -115,12 +115,12 @@ $amount = (float) round($info["amount"]);
 
 <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-    <title>Oosa Herbal Care || Pay</title>
+    <title>Oosa Herbal Ventures || Pay</title>
     <!-- meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Oosa Herbal Care">
+    <meta name="description" content="Oosa Herbal Ventures">
     <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">

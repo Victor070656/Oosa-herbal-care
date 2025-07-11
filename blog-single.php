@@ -36,14 +36,14 @@ $tags = !empty($blog['tags']) ? explode(',', $blog['tags']) : [];
 <html lang="en" class="no-js">
 
 <head>
-    <title><?= htmlspecialchars($blog['title']); ?> - Oosa Herbal Care Blog</title>
+    <title><?= htmlspecialchars($blog['title']); ?> - Oosa Herbal Ventures Blog</title>
     <!-- meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="<?= htmlspecialchars(substr(strip_tags($blog['content']), 0, 160)); ?>">
     <meta name="keywords" content="<?= htmlspecialchars($blog['tags'] ?? 'herbal care, natural health, wellness'); ?>">
-    <meta name="author" content="<?= htmlspecialchars($blog['author'] ?? 'Oosa Herbal Care'); ?>">
+    <meta name="author" content="<?= htmlspecialchars($blog['author'] ?? 'Oosa Herbal Ventures'); ?>">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="<?= htmlspecialchars($blog['title']); ?>">
@@ -582,7 +582,7 @@ $tags = !empty($blog['tags']) ? explode(',', $blog['tags']) : [];
                                 <div class="blog-meta">
                                     <div class="blog-meta-item">
                                         <i class="fas fa-user"></i>
-                                        <span><?= 'Oosa Herbal Care'; ?></span>
+                                        <span><?= 'Oosa Herbal Ventures'; ?></span>
                                     </div>
                                     <div class="blog-meta-item">
                                         <i class="fas fa-calendar"></i>
@@ -644,7 +644,7 @@ $tags = !empty($blog['tags']) ? explode(',', $blog['tags']) : [];
                         <div class="">
 
                             <div class="author-info">
-                                <h4><?= htmlspecialchars($blog['author'] ?? 'Oosa Herbal Care Team'); ?></h4>
+                                <h4><?= htmlspecialchars($blog['author'] ?? 'Oosa Herbal Ventures Team'); ?></h4>
                                 <p class="author-bio">
                                     <?= htmlspecialchars($blog['author_bio'] ?? 'Expert in natural health and herbal remedies, dedicated to sharing knowledge about holistic wellness and natural healing solutions.'); ?>
                                 </p>

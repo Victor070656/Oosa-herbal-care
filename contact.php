@@ -11,12 +11,12 @@ session_start();
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <title>Oosa Herbal Care || Contact Us</title>
+    <title>Oosa Herbal Ventures || Contact Us</title>
     <!-- meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Oosa Herbal Care">
+    <meta name="description" content="Oosa Herbal Ventures">
     <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -127,7 +127,7 @@ session_start();
                                         <div class="contact-details">
                                             <h2 class="contact-title">Mail Address</h2>
                                             <a class="contact-info"
-                                                href="mailto:cygalmcs@gmail.com">cygalmcs@gmail.com</a>
+                                                href="mailto:info@oosaherbal.com">info@oosaherbal.com</a>
                                             <!-- <a class="contact-info" href="mailto:info2@example.com">info2@example.com</a> -->
                                         </div>
                                     </div>
@@ -145,6 +145,8 @@ session_start();
                                         <div class="contact-details">
                                             <h2 class="contact-title">Office Location</h2>
                                             <p class="contact-info">
+                                                No 5 Eze Chime Street, by White House Bustop, Trans-Ekulu, Enugu East
+                                                LGA, Enugu State
                                             </p>
                                         </div>
                                     </div>
@@ -161,7 +163,7 @@ session_start();
                                         </div>
                                         <div class="contact-details">
                                             <h2 class="contact-title">Phone Number</h2>
-                                            <a class="contact-info" href="tel:+2347060684352">+234 706 0684 352</a>
+                                            <a class="contact-info" href="tel:+2348078777200">+234 807 8777 200</a>
                                             <!-- <a class="contact-info" href="tel:(307) 555-0133">(307) 555-0133</a> -->
                                         </div>
                                     </div>
@@ -183,7 +185,7 @@ session_start();
                                 <p class="section-subheading">We would like to hear from you.</p>
                             </div>
                             <div class="contact-form--wrapper">
-                                <form method="post" action="https://formsubmit.co/info@aestheticsbylozik.com"
+                                <form method="post" action="https://formsubmit.co/info@oosaherbal.com"
                                     class="contact-form">
                                     <div class="row">
                                         <div class="col-md-6 col-12">
