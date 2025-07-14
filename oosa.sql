@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 25, 2025 at 02:55 PM
+-- Generation Time: Jul 14, 2025 at 07:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,6 +31,10 @@ CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(50) NOT NULL,
+  `whatsapp` int(11) DEFAULT NULL,
+  `acct_number` varchar(100) DEFAULT NULL,
+  `acct_name` varchar(150) DEFAULT NULL,
+  `bank` varchar(100) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -38,8 +42,29 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `email`, `password`, `created_at`) VALUES
-(1, 'admin@admin.com', 'admin123', '2024-05-28 16:33:54');
+INSERT INTO `admin` (`id`, `email`, `password`, `whatsapp`, `acct_number`, `acct_name`, `bank`, `created_at`) VALUES
+(1, 'admin@admin.com', 'admin123', 807654432, '', '', '', '2024-05-28 16:33:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `banners`
+--
+
+CREATE TABLE `banners` (
+  `id` int(11) NOT NULL,
+  `heading` text DEFAULT NULL,
+  `subtitle` text DEFAULT NULL,
+  `image` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `banners`
+--
+
+INSERT INTO `banners` (`id`, `heading`, `subtitle`, `image`, `created_at`) VALUES
+(1, 'Your Journey to Natural Wellness Starts Here', 'Discover the power of time-tested herbal remedies, carefully crafted for modern living.', '1751907712HerbalMedicine_share.jpg', '2025-07-07 18:01:52');
 
 -- --------------------------------------------------------
 
@@ -88,7 +113,9 @@ INSERT INTO `cart` (`id`, `userid`, `productid`, `quantity`, `created_at`) VALUE
 (3, '11184314', '751411', 5, '2024-06-02 15:47:06'),
 (4, '11184314', '871939', 1, '2024-06-02 17:35:32'),
 (10, '14040134', '641037', 1, '2024-06-10 17:43:06'),
-(11, '14040134', '840028', 1, '2024-06-10 17:43:20');
+(11, '14040134', '840028', 1, '2024-06-10 17:43:20'),
+(14, '43711987', '873264', 1, '2025-07-07 17:23:15'),
+(15, '43711987', '744689', 3, '2025-07-07 17:26:41');
 
 -- --------------------------------------------------------
 
@@ -121,6 +148,7 @@ CREATE TABLE `orders` (
   `orderid` varchar(20) NOT NULL,
   `userid` varchar(10) NOT NULL,
   `ref` varchar(50) DEFAULT NULL,
+  `payment_type` varchar(150) DEFAULT NULL,
   `items` text NOT NULL,
   `amount` float NOT NULL,
   `firstname` varchar(20) NOT NULL,
@@ -140,11 +168,9 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `orderid`, `userid`, `ref`, `items`, `amount`, `firstname`, `lastname`, `email`, `phone`, `country`, `city`, `zipcode`, `address1`, `address2`, `status`, `created_at`) VALUES
-(4, '2418899843', '43711987', NULL, '[{\"userid\":\"43711987\",\"productid\":\"641037\",\"quantity\":\"1\"}]', 68.2, 'Victor', 'Ikechukwu', 'ikechukwuv052@gmail.com', '07065606123', 'Nigeria', 'Port Harcourt', '560104', 'Woji', '', 'In queue', '2024-06-07 00:00:00'),
-(5, '9588526046', '43711987', NULL, '[{\"userid\":\"43711987\",\"productid\":\"751411\",\"quantity\":\"2\"},{\"userid\":\"43711987\",\"productid\":\"871939\",\"quantity\":\"3\"}]', 159.5, 'Victor', 'Ikechukwu', 'ikechukwuv052@gmail.com', '07065606123', 'Nigeria', 'Port Harcourt', '560104', 'Woji', 'woji estate', 'In queue', '2024-06-07 00:00:00'),
-(6, '5943638645', '43711987', NULL, '[{\"userid\":\"43711987\",\"productid\":\"744689\",\"quantity\":\"1\"},{\"userid\":\"43711987\",\"productid\":\"873264\",\"quantity\":\"1\"}]', 728.84, 'Jameson', 'Wyatt', 'jozoxe@example.com', '+1 (567) 335-5841', 'Similique in rem des', 'Sacramento', '97497', 'Non dolor neque moll', 'Proident placeat n', 'In queue', '2025-05-30 00:00:00'),
-(7, '6743080428', '43711987', '0C8b9722HcF6Yaf74Jf1', '[{\"userid\":\"43711987\",\"productid\":\"873264\",\"quantity\":\"1\"}]', 8786, 'Quon', 'Dale', 'qogon@example.com', '+1 (865) 754-5834', 'Autem labore et ipsa', 'Miami', '31605', 'Earum voluptatem eiu', 'Numquam dignissimos ', 'In queue', '2025-05-30 16:36:20');
+INSERT INTO `orders` (`id`, `orderid`, `userid`, `ref`, `payment_type`, `items`, `amount`, `firstname`, `lastname`, `email`, `phone`, `country`, `city`, `zipcode`, `address1`, `address2`, `status`, `created_at`) VALUES
+(8, 'OS-686be5247d052', '43711987', 'jgjhhvhvhvkkkh', 'Bank', '[{\"userid\":\"43711987\",\"productid\":\"744689\",\"quantity\":\"1\"}]', 1501.78, 'Michael', 'Harper', 'nyliv@mailinator.com', '+1 (383) 325-8428', 'Cum ea officia corru', 'Qui aut deserunt ex ', '22694', 'Culpa commodi non pr', 'Culpa molestias cill', 'In queue', '2025-07-07 16:17:56'),
+(9, 'OS-686bea6076a51', '43711987', '', 'On Delivery', '[{\"userid\":\"43711987\",\"productid\":\"873264\",\"quantity\":\"1\"}]', 8376, 'Elaine', 'Peck', 'ciwykajap@mailinator.com', '+1 (444) 989-3232', 'Vero dolor sint nesc', 'Qui laboriosam ulla', '95912', 'Consequuntur ad sequ', 'Facilis est eum ulla', 'In queue', '2025-07-07 16:40:16');
 
 -- --------------------------------------------------------
 
@@ -252,6 +278,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `banners`
+--
+ALTER TABLE `banners`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `blogs`
 --
 ALTER TABLE `blogs`
@@ -312,6 +344,12 @@ ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `banners`
+--
+ALTER TABLE `banners`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
@@ -321,7 +359,7 @@ ALTER TABLE `blogs`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -333,7 +371,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `products`
