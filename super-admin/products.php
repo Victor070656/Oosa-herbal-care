@@ -1,7 +1,7 @@
 <?php
 include_once "../config.php";
 session_start();
-if (!isset($_SESSION["staff"])) {
+if (!isset($_SESSION["admin"])) {
   echo "<script>location.href='login.php'</script>";
 }
 
@@ -80,6 +80,7 @@ if (isset($_GET["s"])) {
                           <th scope="col">Discount (%)</th>
                           <th scope="col">Status</th>
                           <th scope="col">Date</th>
+                          <th scope="col">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -118,19 +119,25 @@ if (isset($_GET["s"])) {
                                 if ($product->status == "available") {
 
                                   ?>
-                                  <span class="badge bg-primary small "><?= strtoupper($product->status); ?></span>
-
+                                  <a href="unavailable.php?pid=<?= $product->productid; ?>">
+                                    <span class="badge bg-primary small "><?= strtoupper($product->status); ?></span>
+                                  </a>
                                   <?php
                                 } else {
                                   ?>
-                                  <span class="badge bg-danger small "><?= strtoupper($product->status); ?></span>
-
+                                  <a href="available.php?pid=<?= $product->productid; ?>">
+                                    <span class="badge bg-danger small "><?= strtoupper($product->status); ?></span>
+                                  </a>
                                   <?php
                                 }
                                 ?>
                               </td>
-                              <td class="text-nowrap"><?= date("d-m-Y h:i",strtotime($product->created_at)); ?></td>
-
+                              <td class="text-nowrap"><?= $product->created_at; ?></td>
+                              <td>
+                                <a href="editproduct.php?pid=<?= $product->productid; ?>"><i data-feather="edit"></i></a>
+                                <!-- <a href="#"><i data-feather="eye"></i></a> -->
+                                <a href="deleteproduct.php?pid=<?= $product->productid; ?>"><i data-feather="trash"></i></a>
+                              </td>
                             </tr>
                             <?php
                           endwhile;

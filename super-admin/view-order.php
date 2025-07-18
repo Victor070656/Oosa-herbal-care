@@ -1,7 +1,7 @@
 <?php
 include_once "../config.php";
 session_start();
-if (!isset($_SESSION["staff"])) {
+if (!isset($_SESSION["admin"])) {
     echo "<script>location.href='login.php'</script>";
 }
 
@@ -16,8 +16,8 @@ $orders = mysqli_fetch_assoc($getOrders);
 
 $date1 = new DateTime($orders["created_at"]);
 $date2 = new DateTime($orders["created_at"]);
-$date1->modify("+ 1 days");
-$date2->modify("+ 7 days");
+$date1->modify("+ 14 days");
+$date2->modify("+ 28 days");
 $first_date = $date1->format("D d F Y");
 $second_date = $date2->format("D d F Y");
 
@@ -84,7 +84,7 @@ $options = [
                                     </div>
                                     <div class="col-12">
                                         <p class="mb-1"><span class="fw-bold">Amount Paid:</span>
-                                            ₦<?= number_format($orders["amount"]); ?></p>
+                                            $<?= $orders["amount"]; ?></p>
                                         <p class="mb-1"><span class="fw-bold">Status:</span> <?= $orders["status"]; ?>
                                         </p>
                                         <h6 class="mt-0 pt-0">Order to be delivered between <b><?= $first_date; ?></b>
@@ -100,7 +100,13 @@ $options = [
                                             <?= $orders["address1"] . ", " . $orders["city"] . ", " . $orders["country"]; ?>
                                         </p>
 
-
+                                        <div class="btn-group mt-3">
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modalId">
+                                                Edit Status
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -158,7 +164,67 @@ $options = [
                 </div>
             </div>
 
+            <!-- Modal -->
+            <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+                aria-hidden="true" style="backdrop-filter: blur(5px)">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalTitleId">
+                                Update the order status
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post">
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <select class="form-select" name="status">
+                                        <?php
+                                        foreach ($options as $option) {
+                                            ?>
+                                            <option <?= $option == $orders["status"] ? "selected" : ""; ?>><?= $option; ?>
+                                            </option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" name="update-status" class="btn btn-primary">Save</button>
+                            </div>
+                            <?php
+                            if (isset($_POST["update-status"])) {
+                                $status = $_POST["status"];
 
+                                $updateStatus = mysqli_query($conn, "UPDATE `orders` SET `status` = '$status' WHERE `orderid` = '$orderid'");
+                                if ($updateStatus) {
+                                    echo "<script>alert('Status Updated!');location.href='view-order.php?oid=$orderid'</script>";
+                                } else {
+                                    echo "<script>alert('Something went wrong!')</script>";
+                                }
+                            }
+                            ?>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                var modalId = document.getElementById('modalId');
+
+                modalId.addEventListener('show.bs.modal', function (event) {
+                    // Button that triggered the modal
+                    let button = event.relatedTarget;
+                    // Extract info from data-bs-* attributes
+                    let recipient = button.getAttribute('data-bs-whatever');
+
+                    // Use above variables to manipulate the DOM
+                });
+            </script>
 
 
         </div>

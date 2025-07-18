@@ -1,7 +1,7 @@
 <?php
 include_once "../config.php";
 session_start();
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["staff"])) {
   echo "<script>location.href='login.php'</script>";
 }
 

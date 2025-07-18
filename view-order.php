@@ -374,8 +374,8 @@ $orders = mysqli_fetch_assoc($getOrders);
                         <?php
                         $date1 = new DateTime($orders["created_at"]);
                         $date2 = new DateTime($orders["created_at"]);
-                        $date1->modify("+ 14 days");
-                        $date2->modify("+ 28 days");
+                        $date1->modify("+ 1 days");
+                        $date2->modify("+ 7 days");
                         $first_date = $date1->format("D, M d, Y");
                         $second_date = $date2->format("D, M d, Y");
                         ?>

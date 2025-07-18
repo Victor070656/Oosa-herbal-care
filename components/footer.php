@@ -108,6 +108,20 @@
             </div>
         </div>
     </div>
+    <?php
+    $getAdminInfo = mysqli_query($conn, "SELECT * FROM `admin`");
+    if (mysqli_num_rows($getAdminInfo) > 0) {
+        $adminInfo = mysqli_fetch_assoc($getAdminInfo);
+    }
+    ?>
+    ?>
+    <!-- whatsapp start -->
+    <div style="position: fixed; bottom: 85px; right: 50px; z-index: 1000;">
+        <a href="https://wa.me/<?= $adminInfo['whatsapp'] ?? '' ?>" target="_blank">
+            <img src="assets/images/whatsapp.png" alt="" style="width: 60px; height: 60px; object-fit: contain;">
+        </a>
+    </div>
+    <!-- whatsapp end -->
     <div class="footer-bottom bg-4">
         <div class="container">
             <div

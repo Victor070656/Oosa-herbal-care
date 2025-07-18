@@ -1,11 +1,11 @@
 <?php
 include_once "../config.php";
 session_start();
-if (!isset($_SESSION["staff"])) {
+if (!isset($_SESSION["admin"])) {
   echo "<script>location.href='login.php'</script>";
 }
 
-$getadmin = mysqli_query($conn, "SELECT * FROM `staff`");
+$getadmin = mysqli_query($conn, "SELECT * FROM `admin`");
 $admin = mysqli_fetch_array($getadmin);
 ?>
 <!DOCTYPE html>
@@ -72,7 +72,26 @@ $admin = mysqli_fetch_array($getadmin);
                       <input type="text" value="<?= $admin["password"]; ?>" step="any" name="password"
                         class="form-control" required placeholder="Password">
                     </div>
-
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Whatsapp Number</label>
+                      <input type="text" value="<?= $admin["whatsapp"]; ?>" name="whatsapp" class="form-control"
+                        placeholder="Whatsapp Number ...">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Account Number</label>
+                      <input type="text" value="<?= $admin["acct_number"]; ?>" step="any" name="acct_number"
+                        class="form-control" placeholder="Account Number...">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Account Name</label>
+                      <input type="text" value="<?= $admin["acct_name"]; ?>" step="any" name="acct_name"
+                        class="form-control" placeholder="Account Name...">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Bank</label>
+                      <input type="text" value="<?= $admin["bank"]; ?>" step="any" name="bank" class="form-control"
+                        placeholder="Bank...">
+                    </div>
                     <div class="col-12 mb-3">
                       <input type="submit" name="update" value="Update" class="btn btn-primary">
                     </div>
@@ -82,7 +101,11 @@ $admin = mysqli_fetch_array($getadmin);
                   if (isset($_POST["update"])) {
                     $email = htmlspecialchars($_POST["email"]);
                     $password = htmlspecialchars($_POST["password"]);
-                    $update = mysqli_query($conn, "UPDATE `staff` SET `email`='$email', `password`='$password'");
+                    $whatsapp = htmlspecialchars($_POST["whatsapp"]);
+                    $acct_number = htmlspecialchars($_POST["acct_number"]);
+                    $acct_name = htmlspecialchars($_POST["acct_name"]);
+                    $bank = htmlspecialchars($_POST["bank"]);
+                    $update = mysqli_query($conn, "UPDATE `admin` SET `email`='$email', `password`='$password', `whatsapp`='$whatsapp', `acct_number`='$acct_number', `acct_name`='$acct_name', `bank`='$bank'");
                     if ($update) {
                       echo "<script>alert('Successfully updated ✅'); location.href='adminprofile.php'</script>";
                     }

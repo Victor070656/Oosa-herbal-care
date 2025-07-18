@@ -1,7 +1,7 @@
 <?php
 include_once "../config.php";
 session_start();
-if (!isset($_SESSION["staff"])) {
+if (!isset($_SESSION["admin"])) {
   echo "<script>location.href='login.php'</script>";
 }
 
@@ -59,7 +59,7 @@ $rev = $getRev["rev"] ?? 0;
     <div class="page-content">
       <div class="main-wrapper">
         <div class="row">
-          <div class="col-md-6 col-xl-4">
+          <div class="col-md-6 col-xl-3">
             <div class="card stat-widget border-start border-success border-3   ">
               <div class="card-body">
                 <h5 class="card-title">Users</h5>
@@ -67,7 +67,7 @@ $rev = $getRev["rev"] ?? 0;
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-xl-4">
+          <div class="col-md-6 col-xl-3">
             <div class="card stat-widget border-start border-success border-3 ">
               <div class="card-body">
                 <h5 class="card-title">Products</h5>
@@ -75,7 +75,7 @@ $rev = $getRev["rev"] ?? 0;
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-xl-4">
+          <div class="col-md-6 col-xl-3">
             <div class="card stat-widget border-start border-success border-3 ">
               <div class="card-body">
                 <h5 class="card-title">Orders</h5>
@@ -84,7 +84,15 @@ $rev = $getRev["rev"] ?? 0;
               </div>
             </div>
           </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="card stat-widget border-start border-success border-3 ">
+              <div class="card-body">
+                <h5 class="card-title">Revenue</h5>
+                <h2>₦<?= number_format($rev); ?></h2>
 
+              </div>
+            </div>
+          </div>
         </div>
         <div class="row">
           <div class="col">

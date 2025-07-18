@@ -628,7 +628,7 @@ $topay = $subtotal + $shipping;
 
                                     <div class="form-field">
                                         <label class="form-label">Zip Code *</label>
-                                        <input type="text" name="zip" class="form-input" required
+                                        <input type="text" name="zip" class="form-input"
                                             placeholder="000000" />
                                     </div>
 

@@ -58,6 +58,19 @@
         <li class="<?= basename($_SERVER["SCRIPT_NAME"]) == "products.php" ? 'active-page' : '' ?>">
             <a href="products.php"><i data-feather="layers"></i>Products</a>
         </li>
+
+        <li class="<?= basename($_SERVER["SCRIPT_NAME"]) == "addproduct.php" ? 'active-page' : '' ?>">
+            <a href="addproduct.php"><i data-feather="plus"></i>Add Product</a>
+        </li>
+        <li class="<?= basename($_SERVER["SCRIPT_NAME"]) == "product-category.php" ? 'active-page' : '' ?>">
+            <a href="product-category.php"><i data-feather="layers"></i>Category</a>
+        </li>
+        <li class="<?= basename($_SERVER["SCRIPT_NAME"]) == "banners.php" ? 'active-page' : '' ?>">
+            <a href="banners.php"><i data-feather="layers"></i>Banner Slides</a>
+        </li>
+        <li class="<?= basename($_SERVER["SCRIPT_NAME"]) == "blogs.php" ? 'active-page' : '' ?>">
+            <a href="blogs.php"><i data-feather="image"></i>Blogs</a>
+        </li>
         <li class="<?= basename($_SERVER["SCRIPT_NAME"]) == "orders.php" ? 'active-page' : '' ?>">
             <a href="orders.php"><i data-feather="shopping-cart"></i>Orders</a>
         </li>

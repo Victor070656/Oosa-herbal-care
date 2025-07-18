@@ -1,12 +1,21 @@
 <?php
 include_once "../config.php";
 session_start();
-if (!isset($_SESSION["staff"])) {
+if (!isset($_SESSION["admin"])) {
   echo "<script>location.href='login.php'</script>";
 }
 
-$getadmin = mysqli_query($conn, "SELECT * FROM `staff`");
-$admin = mysqli_fetch_array($getadmin);
+if (isset($_GET["s"])) {
+  $s = $_GET["s"];
+}
+
+if (isset($s)) {
+  $getUsers = mysqli_query($conn, "SELECT * FROM `users` WHERE (`userid` LIKE '%$s%') OR (`firstname` LIKE '%$s%') OR (`lastname` LIKE '%$s%') OR (`username` LIKE '%$s%') OR (`phone` LIKE '%$s%') OR (`email` LIKE '%$s%') ORDER BY `id` DESC");
+} else {
+  $getUsers = mysqli_query($conn, "SELECT * FROM `users` ORDER BY `id` DESC");
+}
+
+$users = mysqli_fetch_all($getUsers, MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +32,7 @@ $admin = mysqli_fetch_array($getadmin);
   <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <!-- Title -->
-  <title>Profile</title>
+  <title>Users</title>
 
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&amp;display=swap" rel="stylesheet">
@@ -59,36 +68,44 @@ $admin = mysqli_fetch_array($getadmin);
           <div class="col">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Admin Profile</h5>
-                <form method="post">
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label class="form-label">Email</label>
-                      <input type="email" value="<?= $admin["email"]; ?>" class="form-control" name="email"
-                        placeholder="Email" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <label class="form-label">Password</label>
-                      <input type="text" value="<?= $admin["password"]; ?>" step="any" name="password"
-                        class="form-control" required placeholder="Password">
-                    </div>
-
-                    <div class="col-12 mb-3">
-                      <input type="submit" name="update" value="Update" class="btn btn-primary">
-                    </div>
+                <div class="row">
+                  <div class="col-8">
+                    <h4>All Users</h4>
                   </div>
-                  <!-- update admin -->
-                  <?php
-                  if (isset($_POST["update"])) {
-                    $email = htmlspecialchars($_POST["email"]);
-                    $password = htmlspecialchars($_POST["password"]);
-                    $update = mysqli_query($conn, "UPDATE `staff` SET `email`='$email', `password`='$password'");
-                    if ($update) {
-                      echo "<script>alert('Successfully updated ✅'); location.href='adminprofile.php'</script>";
-                    }
-                  }
-                  ?>
-                </form>
+                </div>
+
+                <div class="row">
+                  <div class="table-responsive">
+                    <table class="table invoice-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Full Name</th>
+                          <th scope="col">Username</th>
+                          <th scope="col">Phone Number</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Reg. Date</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        foreach ($users as $user) {
+                          ?>
+                          <tr>
+                            <th scope="row"><?= $user["userid"]; ?></th>
+                            <td><?= $user["firstname"] . " " . $user["lastname"]; ?></td>
+                            <td><?= $user["username"]; ?></td>
+                            <td><?= $user["phone"]; ?></td>
+                            <td><?= $user["email"]; ?></td>
+                            <td><?= $user["created_at"]; ?></td>
+                          </tr>
+                          <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

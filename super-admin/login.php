@@ -80,9 +80,9 @@ session_start();
                 $email = $_POST["email"];
                 $password = $_POST["password"];
 
-                $loginUser = mysqli_query($conn, "SELECT * FROM `staff` WHERE `email`='$email' AND `password`='$password'");
+                $loginUser = mysqli_query($conn, "SELECT * FROM `admin` WHERE `email`='$email' AND `password`='$password'");
                 if (mysqli_num_rows($loginUser) > 0) {
-                  $_SESSION["staff"] = "staff";
+                  $_SESSION["admin"] = "admin";
                   echo "<script>alert('Login successful ✅'); location.href='./'</script>";
                 } else {
                   echo "<script>alert('Wrong Login Credentials');</script>";

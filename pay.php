@@ -229,7 +229,7 @@ $amount = (float) round($info["amount"]);
                         <h1 class=" mb-3">✔️</h1>
                         <h1 class="display-3 fw-bold ">Proceed To Pay</h1>
                         <h2 class="">Your order costs: ₦<?= $info["amount"]; ?></h2>
-                        <p class="mb-3">Orders take between 14 & 28 days to arrive. </p>
+                        <p class="mb-3">Orders take between 1 & 7 days to arrive. </p>
                         <div class="d-flex gap-3 justify-content-center">
 
                             <form method="post" action="action.php">

@@ -1,7 +1,7 @@
 <?php
 include_once "../config.php";
 session_start();
-if (!isset($_SESSION["staff"])) {
+if (!isset($_SESSION["admin"])) {
   echo "<script>location.href='login.php'</script>";
 }
 if (isset($_GET["s"])) {
@@ -93,7 +93,7 @@ $rate = mysqli_fetch_assoc($getRate);
                                   <th scope="col">Order Date</th>
                                   <th scope="col">Amount (₦)</th>
                                   <th scope="col">Status</th>
-                                  <th scope="col">Action</th>
+                                  <th scope="col">Actions</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -112,7 +112,7 @@ $rate = mysqli_fetch_assoc($getRate);
                                       <td><?= number_format($order["amount"]); ?></td>
                                       <td><span class="badge bg-primary"><?= $order["status"]; ?></span></td>
                                       <td>
-                                        <a href="view-order.php?oid=<?= $order['orderid']; ?>" title="View"><i
+                                        <a href="view-order.php?oid=<?= $order['orderid']; ?>"><i
                                             data-feather="eye"></i></a>
                                       </td>
                                     </tr>
