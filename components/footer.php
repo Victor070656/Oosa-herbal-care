@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-xl-4 col-lg-5 col-md-6 col-12 footer-widget">
                         <div class="footer-widget-inner">
-                            <img src="assets/images/logo2.png" alt="" style="height: 45px; border-radius: 8px;">
+                            <img src="assets/images/logo2.png" alt="" style="height: 55px; border-radius: 8px;">
                             <div class="footer-newsletter mt-2">
                                 <p class="footer-text mb-3">
                                     Stay up to date with all the news.
@@ -113,7 +113,6 @@
     if (mysqli_num_rows($getAdminInfo) > 0) {
         $adminInfo = mysqli_fetch_assoc($getAdminInfo);
     }
-    ?>
     ?>
     <!-- whatsapp start -->
     <div style="position: fixed; bottom: 85px; right: 50px; z-index: 1000;">

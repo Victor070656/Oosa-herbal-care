@@ -99,6 +99,10 @@ if (!isset($_SESSION["admin"])) {
                       <textarea name="description" id="" class=" form-control " required></textarea>
                     </div>
                     <div class="col-12 mb-3">
+                      <label class="form-label">Details</label>
+                      <textarea name="details" id="" class=" form-control " required></textarea>
+                    </div>
+                    <div class="col-12 mb-3">
                       <label class="form-label">Product image</label>
                       <input type="file" name="image" class="form-control" required>
                     </div>
@@ -116,13 +120,14 @@ if (!isset($_SESSION["admin"])) {
                     $price = htmlspecialchars($_POST["price"]);
                     $discount = htmlspecialchars($_POST["discount"]);
                     $description = htmlspecialchars($_POST["description"]);
+                    $details = htmlspecialchars($_POST["details"]);
                     $image = date("YmdHis") . $_FILES["image"]["name"];
                     $tmp_image = $_FILES["image"]["tmp_name"];
                     $location = "../uploads/" . $image;
 
 
-                    $addProduct = mysqli_query($conn, "INSERT INTO `products` (`category_id`, `productid`, `name`, `tags`, `price`, `discount`, `description`, `image`) 
-                    VALUES ('$category', '$productid','$name','$tags','$price','$discount','$description','$image')");
+                    $addProduct = mysqli_query($conn, "INSERT INTO `products` (`category_id`, `productid`, `name`, `tags`, `price`, `discount`, `description`, `details`, `image`) 
+                    VALUES ('$category', '$productid','$name','$tags','$price','$discount','$description','$details','$image')");
 
                     if ($addProduct) {
                       move_uploaded_file($tmp_image, $location);

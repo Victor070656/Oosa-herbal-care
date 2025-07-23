@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials Section - Bootstrap + SwiperJS</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.0.4/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Minimal Custom CSS -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .testimonials-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .star {
+            color: #ffc107;
+        }
+
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .swiper-pagination-bullet-active {
+            background: white;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid py-5 d-flex align-items-center min-vh-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center text-white mb-5">
+                    <h2 class="display-4 fw-bold mb-3">What Our Clients Say</h2>
+                    <p class="lead mx-auto" style="max-width: 600px; opacity: 0.9;">
+                        Don't just take our word for it. Here's what our amazing clients have to say about their
+                        experience working with us.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-12 col-xl-10">
+                    <div class="testimonials-container rounded-4 p-4 p-md-5 shadow-lg position-relative">
+                        <div class="swiper testimonials-swiper">
+                            <div class="swiper-wrapper">
+                                <!-- Testimonial 1 -->
+                                <div class="swiper-slide">
+                                    <div class="card border-0 shadow-sm h-100">
+                                        <div class="card-body p-4 p-md-5 text-center">
+                                            <div class="display-1 text-primary opacity-25 mb-3">"</div>
+                                            <div class="mb-3">
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                            </div>
+                                            <blockquote class="blockquote fs-5 mb-4 fst-italic">
+                                                Working with this team has been absolutely incredible. They exceeded all
+                                                our expectations and delivered results that transformed our business.
+                                                The attention to detail and professionalism is unmatched.
+                                            </blockquote>
+                                            <div class="d-flex align-items-center justify-content-center gap-3">
+                                                <img src="https://images.unsplash.com/photo-1494790108755-2616b79fc8c8?w=150&h=150&fit=crop&crop=face"
+                                                    alt="Sarah Johnson"
+                                                    class="rounded-circle border border-primary border-3 shadow-sm"
+                                                    style="width: 70px; height: 70px; object-fit: cover;">
+                                                <div class="text-start">
+                                                    <h6 class="mb-1 fw-semibold">Sarah Johnson</h6>
+                                                    <small class="text-muted">CEO, TechStart Inc.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 2 -->
+                                <div class="swiper-slide">
+                                    <div class="card border-0 shadow-sm h-100">
+                                        <div class="card-body p-4 p-md-5 text-center">
+                                            <div class="display-1 text-primary opacity-25 mb-3">"</div>
+                                            <div class="mb-3">
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                            </div>
+                                            <blockquote class="blockquote fs-5 mb-4 fst-italic">
+                                                The level of expertise and creativity brought to our project was
+                                                outstanding. They understood our vision perfectly and brought it to life
+                                                in ways we never imagined possible. Highly recommended!
+                                            </blockquote>
+                                            <div class="d-flex align-items-center justify-content-center gap-3">
+                                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+                                                    alt="Michael Chen"
+                                                    class="rounded-circle border border-primary border-3 shadow-sm"
+                                                    style="width: 70px; height: 70px; object-fit: cover;">
+                                                <div class="text-start">
+                                                    <h6 class="mb-1 fw-semibold">Michael Chen</h6>
+                                                    <small class="text-muted">Creative Director, DesignHub</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 3 -->
+                                <div class="swiper-slide">
+                                    <div class="card border-0 shadow-sm h-100">
+                                        <div class="card-body p-4 p-md-5 text-center">
+                                            <div class="display-1 text-primary opacity-25 mb-3">"</div>
+                                            <div class="mb-3">
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                            </div>
+                                            <blockquote class="blockquote fs-5 mb-4 fst-italic">
+                                                From start to finish, the entire experience was seamless. Communication
+                                                was excellent, deadlines were met, and the final result was beyond our
+                                                expectations. We couldn't be happier with the outcome.
+                                            </blockquote>
+                                            <div class="d-flex align-items-center justify-content-center gap-3">
+                                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
+                                                    alt="Emily Rodriguez"
+                                                    class="rounded-circle border border-primary border-3 shadow-sm"
+                                                    style="width: 70px; height: 70px; object-fit: cover;">
+                                                <div class="text-start">
+                                                    <h6 class="mb-1 fw-semibold">Emily Rodriguez</h6>
+                                                    <small class="text-muted">Marketing Manager, GrowthCorp</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 4 -->
+                                <div class="swiper-slide">
+                                    <div class="card border-0 shadow-sm h-100">
+                                        <div class="card-body p-4 p-md-5 text-center">
+                                            <div class="display-1 text-primary opacity-25 mb-3">"</div>
+                                            <div class="mb-3">
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                                <span class="star fs-4">★</span>
+                                            </div>
+                                            <blockquote class="blockquote fs-5 mb-4 fst-italic">
+                                                The team's innovative approach and dedication to excellence is
+                                                remarkable. They took our complex requirements and turned them into an
+                                                elegant, user-friendly solution that our customers love.
+                                            </blockquote>
+                                            <div class="d-flex align-items-center justify-content-center gap-3">
+                                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+                                                    alt="David Thompson"
+                                                    class="rounded-circle border border-primary border-3 shadow-sm"
+                                                    style="width: 70px; height: 70px; object-fit: cover;">
+                                                <div class="text-start">
+                                                    <h6 class="mb-1 fw-semibold">David Thompson</h6>
+                                                    <small class="text-muted">Founder, InnovateNow</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pagination -->
+                            <div class="swiper-pagination mt-4"></div>
+
+                            <!-- Navigation buttons -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.0.4/swiper-bundle.min.js"></script>
+
+    <!-- Minimal JavaScript -->
+    <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.testimonials-swiper', {
+            // Basic parameters
+            slidesPerView: 1,
+            spaceBetween: 30,
+            centeredSlides: true,
+            loop: true,
+
+            // Auto play
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+
+            // Pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // Responsive breakpoints
+            breakpoints: {
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 40,
+                },
+                1024: {
+                    slidesPerView: 1,
+                    spaceBetween: 50,
+                }
+            },
+
+            // Effects
+            effect: 'slide',
+            speed: 600,
+
+            // Touch/mouse interactions
+            allowTouchMove: true,
+            grabCursor: true,
+        });
+    </script>
+</body>
+
+</html>

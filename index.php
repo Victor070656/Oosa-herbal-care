@@ -28,8 +28,10 @@ ini_set('display_errors', 1);
     rel="stylesheet" />
 
   <!-- all css -->
-   <link rel="stylesheet" href="assets/css/vendor.css" />
-  <link rel="stylesheet" href="assets/css/style.css" /></style>
+  <link rel="stylesheet" href="assets/css/vendor.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+
   <style>
     :root {
       --primary-color: #2e7d32;
@@ -554,9 +556,43 @@ ini_set('display_errors', 1);
       backdrop-filter: blur(10px);
       transition: .8s ease;
     }
-  </style>
 
-  
+    /* testimonial */
+    .testimonial-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .testimonial-card p {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-card h4 {
+      font-weight: 600;
+      margin-top: 0.5rem;
+      color: #333;
+    }
+
+    .swiper {
+      width: 100%;
+      padding: 3rem 0;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #000;
+    }
+  </style>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
 </head>
@@ -606,7 +642,7 @@ ini_set('display_errors', 1);
 
                   <div class="hero-container">
                     <div class="row h-100 py-3">
-                      <div class="hero-text col-md-5">
+                      <div class="hero-text col-md-5 mb-3 mb-md-1">
                         <div class="hero-badge">Natural • Pure • Effective</div>
                         <h1 class="hero-title">
                           <?= $banner["heading"] ?>
@@ -649,6 +685,38 @@ ini_set('display_errors', 1);
       </div>
 
       <!-- end slideshow -->
+
+      <!-- about us -->
+      <section class="py-5" style="background-color: #f3fff4ff">
+        <div class="container py-3">
+          <div class="row align-items-center">
+            <div class="col-md-6 mb-3 mb-md-1">
+              <img src="assets/images/herb/02.webp" class="shadow" style="border-radius: 15px;" alt="">
+            </div>
+            <div class="col-md-6">
+              <h2 class="display-6 fw-bold text-success mb-3">About Oosa Herbal Ventures</h2>
+              <p class="text-muted" style="text-align: justify;">
+                About Oosa Herbal Ventures
+                At Oosa Herbal Ventures, we're dedicated to herbal healthcare and your general well-being. We produce
+                high-quality herbal products designed to address a wide range of health conditions.
+                Our expertly formulated products offer natural solutions for issues such as:
+                Hormonal imbalances (including irregular or absent menstruation, ovarian cysts, and pelvic inflammatory
+                disease).
+                Infections (like staphylococcus, chlamydia, candida, yeast infections, and syphilis)
+                Reproductive health concerns (including low/no sperm count, low libido, low performance, and
+                primary/secondary infertility)
+                Enlargements (prostate, heart, and liver).
+                Chronic conditions (such as ulcer, stroke, arthritis, rheumatism, joint pain, waist pain, general body
+                pains, diabetes, and asthma).
+                We are committed to excellence. All our products are crafted by experienced herbalists and undergo
+                rigorous quality assurance processes before packaging. You can trust in their safety and efficacy, as
+                every Oosa Herbal Ventures product is NAFDAC approved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- about us end -->
 
       <section class="py-5 bg-white">
         <div class="container">
@@ -893,8 +961,8 @@ ini_set('display_errors', 1);
           <!-- Image Column -->
           <div class="col-lg-5 mb-4 mb-lg-0">
             <div class="position-relative">
-              <img src="assets/images/herb/04.webp" alt="Natural Herbal Remedies Collection"
-                class="img-fluid shadow-lg rounded-4 w-100" style="aspect-ratio: 3/4; object-fit: cover;">
+              <img src="assets/images/logo2.png" alt="Natural Herbal Remedies Collection"
+                class="img-fluid shadow-lg rounded-4 w-100" style="aspect-ratio: 1/1; object-fit: cover;">
 
               <!-- Floating Badge -->
               <div class="position-absolute top-0 start-0 translate-middle">
@@ -936,12 +1004,11 @@ ini_set('display_errors', 1);
               </h2>
 
               <!-- Description -->
-              <p class="text-muted fs-5 mb-4 lh-base">
+              <p class="text-muted mb-4 lh-base" style="text-align: justify;">
                 Our remedies are carefully formulated using pure, natural ingredients, combining ancestral wisdom with
                 modern-day knowledge to offer safe, potent, and side-effect-free alternatives to conventional medicine.
                 At OOSA Herbal Ventures, we are passionate about restoring health the natural way—through nature’s own
                 pharmacy.
-
                 Over the years, we have proudly helped thousands of individuals overcome health challenges related to
                 infertility, infections, hormonal imbalance, Bone and Joint Related issues, low libido, malaria,
                 typhoid, and more. Our products are ethically sourced, lab-tested, carefully packaged and NAFDAC
@@ -994,11 +1061,11 @@ ini_set('display_errors', 1);
 
               <!-- Call to Action -->
               <div class="d-flex flex-column flex-sm-row gap-3">
-                <a href="contact.php" class="btn btn-success btn-lg px-4 py-3">
+                <a href="contact.php" class="btn btn-success px-4 py-3">
                   <i class="bi bi-calendar-heart me-2"></i>
                   Book Free Consultation
                 </a>
-                <a href="shop.php" class="btn btn-outline-success btn-lg px-4 py-3">
+                <a href="shop.php" class="btn btn-outline-success px-4 py-3">
                   <i class="bi bi-shop me-2"></i>
                   Explore Remedies
                 </a>
@@ -1085,10 +1152,50 @@ ini_set('display_errors', 1);
       <!-- trusted badge end -->
 
 
+      <!-- testimonial -->
+      <div class="container">
+        <div class="swiper mx-auto testimonial-swiper mt-5">
+          <div class="my-3 text-center">
+            <h1 class="text-success">Testimonials</h1>
+            <p class="">What our customers say about us</p>
+          </div>
+          <div class="swiper-wrapper">
+            <?php
+            $getTestimonials = mysqli_query($conn, "SELECT * FROM `testimonials` ORDER BY `id` DESC LIMIT 6");
+            if (mysqli_num_rows($getTestimonials) > 0):
+              while ($testimonial = mysqli_fetch_assoc($getTestimonials)):
+                ?>
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                  <div class="testimonial-card">
+                    <p>"<?= htmlspecialchars($testimonial['message']); ?>"</p>
+                    <div class="">
+                      <h6 class="mb-0">- <?= htmlspecialchars($testimonial['name']); ?></h6>
+                      <small class="mt-0"><?= htmlspecialchars($testimonial['position']); ?></small>
+                    </div>
+                  </div>
+                </div>
+                <?php
+              endwhile;
+            else:
+              ?>
+              <div class="swiper-slide">
+                <div class="card border-0 shadow-sm h-100">
+                  <div class="card-body p-4 p-md-5 text-center">
+                    <p>No testimonials available at the moment. Check back later!</p>
+                  </div>
+                </div>
+              </div>
+            <?php endif; ?>
 
-      <!-- banner end -->
+          </div>
 
-
+          <!-- Pagination & Navigation -->
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
 
 
 
@@ -1179,6 +1286,30 @@ ini_set('display_errors', 1);
     </script>
     <script src="assets/js/vendor.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+      const swiper = new Swiper('.testimonial-swiper', {
+        loop: true,
+        grabCursor: true,
+        spaceBetween: 30,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+      });
+    </script>
+
   </div>
 </body>
 

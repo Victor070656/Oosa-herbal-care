@@ -119,6 +119,10 @@ if (mysqli_num_rows($getproducts) > 0) {
                         class=" form-control "><?= $product["description"]; ?></textarea>
                     </div>
                     <div class="col-12 mb-3">
+                      <label class="form-label">Details</label>
+                      <textarea name="details" id="" class=" form-control "><?= $product["details"]; ?></textarea>
+                    </div>
+                    <div class="col-12 mb-3">
                       <label class="form-label">Product image</label>
                       <input type="file" name="image" class="form-control">
                     </div>
@@ -135,6 +139,7 @@ if (mysqli_num_rows($getproducts) > 0) {
                     $price = htmlspecialchars($_POST["price"]);
                     $discount = htmlspecialchars($_POST["discount"]);
                     $description = htmlspecialchars($_POST["description"]);
+                    $details = htmlspecialchars($_POST["details"]);
                     $image = date("His") . $_FILES["image"]["name"];
                     $tmp_image = $_FILES["image"]["tmp_name"];
                     $location = "uploads/" . $image;
@@ -142,14 +147,14 @@ if (mysqli_num_rows($getproducts) > 0) {
 
                     // var_dump($_FILES["image"]["name"] != "");
                     if ($_FILES["image"]["name"] == "") {
-                      $editProduct = mysqli_query($conn, "UPDATE `products` SET `category_id`='$category', `name`='$name', `tags`='$tags', `price`='$price', `discount`='$discount', `description`='$description' WHERE `productid`='$productid'");
+                      $editProduct = mysqli_query($conn, "UPDATE `products` SET `category_id`='$category', `name`='$name', `tags`='$tags', `price`='$price', `discount`='$discount', `description`='$description', `details`='$details' WHERE `productid`='$productid'");
                       if ($editProduct) {
                         echo "<script>alert('Successfully updated ✅'); location.href='products.php'</script>";
                       } else {
                         echo "<script>alert('An error occured ❌')</script>";
                       }
                     } else {
-                      $editProduct = mysqli_query($conn, "UPDATE `products` SET `category_id`='$category', `name`='$name', `tags`='$tags', `price`='$price', `discount`='$discount', `description`='$description', `image`='$image' WHERE `productid`='$productid'");
+                      $editProduct = mysqli_query($conn, "UPDATE `products` SET `category_id`='$category', `name`='$name', `tags`='$tags', `price`='$price', `discount`='$discount', `description`='$description', `details`='$details', `image`='$image' WHERE `productid`='$productid'");
                       if ($editProduct) {
                         move_uploaded_file($tmp_image, $location);
                         echo "<script>alert('Successfully updated ✅'); location.href='products.php'</script>";
