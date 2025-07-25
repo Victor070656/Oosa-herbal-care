@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 14, 2025 at 07:26 PM
+-- Generation Time: Jul 25, 2025 at 12:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,7 +31,7 @@ CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `whatsapp` int(11) DEFAULT NULL,
+  `whatsapp` varchar(20) DEFAULT NULL,
   `acct_number` varchar(100) DEFAULT NULL,
   `acct_name` varchar(150) DEFAULT NULL,
   `bank` varchar(100) DEFAULT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `email`, `password`, `whatsapp`, `acct_number`, `acct_name`, `bank`, `created_at`) VALUES
-(1, 'admin@admin.com', 'admin123', 807654432, '', '', '', '2024-05-28 16:33:54');
+(1, 'admin@admin.com', 'admin123', '+234807654432', '', '', '', '2024-05-28 16:33:54');
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,12 @@ CREATE TABLE `banners` (
 --
 
 INSERT INTO `banners` (`id`, `heading`, `subtitle`, `image`, `created_at`) VALUES
-(1, 'Your Journey to Natural Wellness Starts Here', 'Discover the power of time-tested herbal remedies, carefully crafted for modern living.', '1751907712HerbalMedicine_share.jpg', '2025-07-07 18:01:52');
+(1, 'Welcome to Oosa Herbal Care Venture', 'Discover the power of time-tested herbal remedies, carefully crafted for modern living.', '17534376251752591007Oossa logo.png', '2025-07-07 18:01:52'),
+(2, 'we have more than 30 different products with NAFDAC approval', 'We are the leading herbal medicine in Africa', '175343769117533716255.jpg', '2025-07-25 11:01:31'),
+(3, 'WHAT DOES OOSA HERBAL DO?', 'Oosa herbal is a herbal clinic and a research centre', '175343773817533706633.jpg', '2025-07-25 11:02:18'),
+(4, 'For whom is HERBAL Medicine suitable?', 'Oosa herbal is a herbal clinic and a research centre', '175343779717533720864.jpg', '2025-07-25 11:03:17'),
+(5, 'WE SPECIALIZE IN THE TREATMENT OF ALL DISEASES.', 'WE ARE BACTERIAL MASTER', '175343785217532796202.jpg', '2025-07-25 11:04:12'),
+(6, 'Welcome To Oosa Herbal Care Ventures', 'home of herbal remedy', '17534378911753277212WELCOME.jpg', '2025-07-25 11:04:51');
 
 -- --------------------------------------------------------
 
@@ -115,7 +120,8 @@ INSERT INTO `cart` (`id`, `userid`, `productid`, `quantity`, `created_at`) VALUE
 (10, '14040134', '641037', 1, '2024-06-10 17:43:06'),
 (11, '14040134', '840028', 1, '2024-06-10 17:43:20'),
 (14, '43711987', '873264', 1, '2025-07-07 17:23:15'),
-(15, '43711987', '744689', 3, '2025-07-07 17:26:41');
+(15, '43711987', '744689', 3, '2025-07-07 17:26:41'),
+(16, '', '744689', 1, '2025-07-18 11:48:25');
 
 -- --------------------------------------------------------
 
@@ -157,9 +163,9 @@ CREATE TABLE `orders` (
   `phone` varchar(30) NOT NULL,
   `country` varchar(30) NOT NULL,
   `city` varchar(30) NOT NULL,
-  `zipcode` varchar(10) NOT NULL,
+  `zipcode` varchar(10) DEFAULT NULL,
   `address1` varchar(255) NOT NULL,
-  `address2` varchar(255) NOT NULL,
+  `address2` varchar(255) DEFAULT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'In queue',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -187,6 +193,7 @@ CREATE TABLE `products` (
   `price` int(11) NOT NULL,
   `discount` float NOT NULL,
   `description` text NOT NULL,
+  `details` text DEFAULT NULL,
   `image` varchar(255) NOT NULL,
   `status` varchar(30) NOT NULL DEFAULT 'available',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
@@ -196,9 +203,9 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `category_id`, `productid`, `name`, `tags`, `price`, `discount`, `description`, `image`, `status`, `created_at`) VALUES
-(14, 4, '744689', 'Ryan Riddle', 'Velit ut consequatur', 89, 98, 'Ex inventore expedit', '202505221025321721.jpg', 'available', '2025-05-22 09:25:32'),
-(16, 5, '873264', 'Austin Richmond', 'Enim quia neque ipsu', 7640, 10, 'Aliqua Aliquid id ', '202505221215123d-male-character-with-laptop_952161-92624.jpg', 'available', '2025-05-22 11:15:12');
+INSERT INTO `products` (`id`, `category_id`, `productid`, `name`, `tags`, `price`, `discount`, `description`, `details`, `image`, `status`, `created_at`) VALUES
+(14, 4, '744689', 'Ryan Riddle', 'Velit ut consequatur', 89, 98, 'Ex inventore expedit', NULL, '202505221025321721.jpg', 'available', '2025-05-22 09:25:32'),
+(16, 5, '873264', 'Austin Richmond', 'Enim quia neque ipsu', 7640, 10, 'Aliqua Aliquid id ', NULL, '202505221215123d-male-character-with-laptop_952161-92624.jpg', 'available', '2025-05-22 11:15:12');
 
 -- --------------------------------------------------------
 
@@ -217,6 +224,49 @@ CREATE TABLE `rate` (
 
 INSERT INTO `rate` (`id`, `rate`) VALUES
 (1, 1480);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
+
+CREATE TABLE `staff` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`id`, `email`, `password`, `created_at`) VALUES
+(1, 'staff@admin.com', 'admin456', '2024-05-28 16:33:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `testimonials`
+--
+
+CREATE TABLE `testimonials` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `testimonials`
+--
+
+INSERT INTO `testimonials` (`id`, `name`, `position`, `message`, `created_at`) VALUES
+(1, 'Obi Nna', 'Director, First Bank', 'Very good products', '2025-07-22 12:15:48'),
+(2, 'Hannah John', 'Teacher', 'something good is cooking', '2025-07-22 13:41:48'),
+(3, 'Rinah Rodgers', 'Dolore sint placeat', 'Provident voluptate Provident voluptate Provident voluptate', '2025-07-22 14:25:55');
 
 -- --------------------------------------------------------
 
@@ -322,6 +372,18 @@ ALTER TABLE `rate`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -347,7 +409,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `banners`
 --
 ALTER TABLE `banners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `blogs`
@@ -359,7 +421,7 @@ ALTER TABLE `blogs`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -384,6 +446,18 @@ ALTER TABLE `products`
 --
 ALTER TABLE `rate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
